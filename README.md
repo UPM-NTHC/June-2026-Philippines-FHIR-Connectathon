@@ -1,4 +1,4 @@
-# June 2026 Philippines FHIR® Connectathon – Quezon City, Philippines
+# June 2026 Philippines FHIR® Connectathon – Boracay, Aklan, Philippines
 
 <PLACE HOLDER FOR GRAPHIC DESIGN>
 
