@@ -10,10 +10,10 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 ## Important Information
 
-- <Link to Program of Activities>
-- <Link to Logistics Notes>
-- [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html))
-- [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html))
+- //Link to Program of Activities//
+- //Link to Logistics Notes//
+- [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html)
+- [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html)
 
 ## Connectathon Objectives
 
