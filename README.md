@@ -1,8 +1,8 @@
 # June 2026 Philippines FHIR® Connectathon – Quezon City, Philippines
 
-![PH FHIR Connectathon Graphic](<graphics/ph-fhir-connectathon-graphic.png>)
+<PLACE HOLDER FOR GRAPHIC DESIGN>
 
-The June 2026 Philippines FHIR® Connectathon is co-organized by the National Telehealth Center (NTHC), under the University of the Philippines Manila National Institutes of Health, in partnership with the Department of Health and key stakeholders.
+The June 2026 Philippines FHIR® Connectathon is co-organized by the National Telehealth Center (NTHC), under the University of the Philippines Manila National Institutes of Health, in partnership with the Department of Health (DOH), Philippine Health Insurance Corporation (PhilHealth), The Strengthening Standards Capability Project (SSCP) of  Commonwealth Scientific and Industrial Research Organisation (CSIRO), Aklan Provincial Health Office, and othterkey stakeholders.
 
 This Connectathon represents a milestone in the Philippines' digital health interoperability journey, bringing together healthcare systems, EMR vendors, and government agencies to advance standardized health data exchange using FHIR® profiles including PH Core, eReferral (PeReF), and Immunization specifications.
 
@@ -10,11 +10,10 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 ## Important Information
 
-- [June 2026 FHIR® Connectathon Detailed Program](https://docs.google.com/document/d/)
-- [FHIR® Connectathon Logistic Note](https://docs.google.com/document/d/)
-- [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/index.html)
-- [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UPM-NTHC/PH-eReferralIG/)
-- [Draft Immunization FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/immunizationfhirig/index.html)
+- <Link to Program of Activities>
+- <Link to Logistics Notes>
+- [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html))
+- [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html))
 
 ## Connectathon Objectives
 
