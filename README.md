@@ -19,11 +19,11 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 ### Primary Objectives
 
-- **Capacity Building**: Equip IT professionals, decision-makers, and healthcare teams with foundational knowledge of interoperability standards and FHIR implementation best practices
-- **Standards Validation**: Test and validate emerging FHIR Implementation Guides (PH Core, eReferral, and Immunization) across real-world health system use cases
-- **Interoperability Testing**: Demonstrate data exchange and system interoperability using standardized FHIR profiles across multiple tracks
-- **Feedback & Refinement**: Capture technical issues, gaps, and lessons learned to inform the next iteration of FHIR IGs and national interoperability standards
-- **Governance & Scale-up**: Engage national agencies, hospitals, LGUs, and EMR vendors in governance discussions to generate policy recommendations for national scale-up
+1. **Capacity Building**: Equip IT professionals, decision-makers, and healthcare teams with foundational knowledge of interoperability standards and FHIR implementation best practices
+2. **Standards Validation**: Test and validate emerging FHIR Implementation Guides (PH Core, eReferral, and Immunization) across real-world health system use cases
+3. **Interoperability Testing**: Demonstrate data exchange and system interoperability using standardized FHIR profiles across multiple tracks
+4. **Feedback & Refinement**: Capture technical issues, gaps, and lessons learned to inform the next iteration of FHIR IGs and national interoperability standards
+5. **Governance & Scale-up**: Engage national agencies, hospitals, LGUs, and EMR vendors in governance discussions to generate policy recommendations for national scale-up
 
 ### Secondary Objectives
 
@@ -34,43 +34,13 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 ## Use Case Summary (Tracks)
 
-| **USE CASE** | **STATION** | **END USER** | **DETAILS** |
-|-----------------|-----------------|----------|----------|
-| **UC1: Data Submission to Shared Health Record (SHR)** | Point of Service | EMR/Clinic Systems | Users will submit clinical data bundle to SHR. **(POST)** |
-| 👉 [Click for track details of Use Case #1](use-case-1.md) | | | |
-| **UC2: Data Retrieval from SHR** | Facility | Hospital Systems | Users will retrieve data bundle from SHR. **(GET)** |
-| 👉 [Click for track details of Use Case #2](use-case-2.md) | | | |
-| **UC3: Terminology Validation** | Development | System Developers | Users will validate terminology codes and mappings. **(GET & POST)** |
-| 👉 [Click for track details of Use Case #3](use-case-3.md) | | | |
-| **UC4: Profile Conformance Testing** | Testing | QA Teams | Users will test conformance to FHIR profiles. **(POST)** |
-| 👉 [Click for track details of Use Case #4](use-case-4.md) | | | |
-| **UC5: Cross-System Interoperability** | Integration | System Vendors | Users will exchange data across multiple systems. **(POST & GET)** |
-| 👉 [Click for track details of Use Case #5](use-case-5.md) | | | |
-
 ## Connectathon Tracks and Sample Data
 
 This Connectathon is organized into multiple tracks, each focusing on specific use cases and FHIR profiles:
 
 ### Track Overview
 
-- **Track 1**: PH Core Profile Implementation - Point of Service Data Submission
-- **Track 2**: PH Core Profile Implementation - FHIR Search and Retrieval
-- **Track 3**: eReferral (PeReF) Profile Implementation - Referral Workflow
-- **Track 4**: Immunization Profile Implementation - Vaccine Record Exchange
-- **Bonus Tracks**: Advanced interoperability scenarios and cross-profile integration
-
 ### Sample Data and Resources
-
-To help participants get started quickly, we have prepared comprehensive resources for each track:
-
-- **Postman Collections**: Ready-to-use API requests for each use case
-- **Sample JSON/XML Files**: Example FHIR resources conforming to PH Core, eReferral, and Immunization profiles
-- **Validation Scripts**: Scripts for local testing and resource validation
-- **Documentation**: Detailed setup guides and troubleshooting resources
-
-👉 [Postman Collection and Environment](./postman/)
-
-👉 [Sample Data and Resources](./sample-data/)
 
 ## FHIR Servers Available for Testing During the Connectathon
 
@@ -79,42 +49,40 @@ To help participants get started quickly, we have prepared comprehensive resourc
 | FHIR R4 | FHIRLab (HAPI FHIR) | https://cdr.fhirlab.net/fhir | CRUD, transaction, validation |
 | FHIR R4 | Ontoserver Terminology | https://tx.fhirlab.net/fhir | $expand, $validate-code, $lookup |
 | FHIR R4 | Ontoserver with Shrimp Viewer | https://ontoserver.csiro.au/shrimp/ | Terminology browsing & visualization |
+| FHIR R4 | FHIRPortal (HAPI FHIR) | https://fhirportal.telehealth.ph/| Back Up HAPI FHIR Server. **Do not use unless instructed**|
+
 
 > **Note**: FHIRLab is an open interoperability sandbox maintained as part of The Strengthening Standards Capability Project (SSCP), co-funded by CSIRO Australia and the Australian Government, Department of Foreign Affairs and Trade. FHIR servers will remain accessible for testing and ongoing learning activities post-Connectathon.
 
 ## Connectathon Track Details
 
-### Track 1: Point of Service Data Submission
+### Track 1: 
 
-**Objective**: Demonstrate how a Point of Service (POS) application can submit clinical data to a central health data repository.
+**Objective**: 
 
-**Focus Profiles**: PH Core (Patient, Encounter, Observation, Condition, Medication, Procedure)
+**Focus Profiles**: 
 
-👉 [Full Track 1 Details](./track-1/README.md)
 
-### Track 2: FHIR Search and Retrieval
+### Track 2:
 
-**Objective**: Test RESTful search and retrieval of clinical data submitted by POS applications.
+**Objective**: 
 
-**Focus Profiles**: PH Core (Patient, Encounter, Observation) with search parameters
+**Focus Profiles**: 
 
-👉 [Full Track 2 Details](./track-2/README.md)
 
-### Track 3: eReferral Workflow Implementation
+### Track 3: 
 
-**Objective**: Demonstrate referral request creation, transmission, and acceptance workflows using FHIR.
+**Objective**: 
 
-**Focus Profiles**: eReferral (PeReF) - ServiceRequest, Communication, Task
+**Focus Profiles**: 
 
-👉 [Full Track 3 Details](./track-3/README.md)
 
 ### Track 4: Immunization Record Exchange
 
-**Objective**: Validate immunization data exchange and conformance to Immunization Implementation Guide.
+**Objective**: 
 
-**Focus Profiles**: Immunization, Immunization Recommendation, Patient
+**Focus Profiles**:
 
-👉 [Full Track 4 Details](./track-4/README.md)
 
 ## International Semantic and Syntactic Standards
 
@@ -159,7 +127,7 @@ Participants should familiarize themselves with the following foundational stand
 
 Participants will demonstrate success through the following activities:
 
-1. ✅ Validate FHIR resources against the draft PH Core, eReferral, and Immunization Implementation Guides
+1. ✅ Validate FHIR resources against the draft PH Core and eReferral Implementation Guides
 2. ✅ Successfully submit individual FHIR resources to the test FHIR server
 3. ✅ Successfully submit FHIR bundles containing related resources in a single transaction
 4. ✅ Perform FHIR search queries using standard search parameters
@@ -168,22 +136,10 @@ Participants will demonstrate success through the following activities:
 7. ✅ Provide structured feedback on gaps, issues, and recommendations for profile refinement
 8. ✅ Document lessons learned and best practices for implementation
 
-## Postman Collection and Environment
-
-To help participants get started, we have prepared a Postman collection and environment file with pre-configured requests for each use case. The collection includes:
-
-- **Expanding valuesets** - Test terminology server capabilities
-- **Validating resources** - Test conformance to FHIR profiles
-- **Submitting resources** - Individual and batch submissions
-- **Submitting transaction bundles** - Multi-resource transactions
-- **Retrieving resources** - Search and read operations
-
-📥 [Download Postman Collection](./postman/fhir_connectathon_collection.json)
-📥 [Download Postman Environment](./postman/fhir_connectathon_environment.json)
 
 ## How to Prepare for the Connectathon
 
-1. **Review the FHIR IGs**: Familiarize yourself with the PH Core, eReferral, and Immunization Implementation Guides
+1. **Review the FHIR IGs**: Familiarize yourself with the PH Core and eReferral Implementation Guides
 2. **Understand FHIR Basics**: Review HL7 FHIR fundamentals and REST API conventions
 3. **Set Up Access**: Ensure you have access to the FHIRLab servers (no credentials required)
 4. **Download Tools**: Install Postman and review the prepared collections and sample data
@@ -192,11 +148,7 @@ To help participants get started, we have prepared a Postman collection and envi
 
 ## Supplementary Information
 
-### Key Contacts
 
-- **For Connectathon Inquiries**: [Contact Email TBD]
-- **For Technical Support**: [Tech Support Email TBD]
-- **For FHIR IG Feedback**: [Feedback Email TBD]
 
 ### Additional Resources
 
@@ -215,7 +167,7 @@ Participants are encouraged to submit structured feedback on:
 - **Implementation Challenges**: Real-world barriers to adoption
 - **Best Practices**: Recommendations for streamlined implementation
 
-👉 [FHIR IG Technical Feedback Sheet](https://docs.google.com/spreadsheets/d/)
+👉 [FHIR IG Technical Feedback Sheet](https://docs.google.com/spreadsheets/d/1WU8-8s-SLfpmF04wGHurtX7mRZnqGI2dcPfHgsN7LxA/edit?usp=sharing)
 
 ---
 
@@ -223,9 +175,9 @@ Participants are encouraged to submit structured feedback on:
 
 FHIR® is a registered trademark of Health Level Seven International.
 
-This Connectathon is made possible through the collaborative efforts of the National Telehealth Center, UP Manila SILab, the Department of Health, and partners in the digital health ecosystem.
+This Connectathon is made possible through the collaborative efforts of the University of the Philippines Manila National Institutes of Health, Department of Health (DOH), Philippine Health Insurance Corporation (PhilHealth), The Strengthening Standards Capability Project (SSCP) of Commonwealth Scientific and Industrial Research Organisation (CSIRO), Aklan Provincial Health Office, and othterkey stakeholders.
 
-For questions and queries regarding the Connectathon, please contact **nih-nthc.upmanila@up.edu.ph** or visit the [NTHC website](https://nthc.upmanila.edu.ph/).
+For questions and queries regarding the Connectathon, please contact **nih-nthc.upmanila@up.edu.ph**.
 
 ---
 
