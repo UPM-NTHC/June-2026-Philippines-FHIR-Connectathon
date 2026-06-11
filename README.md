@@ -12,8 +12,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 - //Link to Program of Activities//
 - //Link to Logistics Notes//
-- [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html)
-- [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html)
+
 
 ## Connectathon Objectives
 
@@ -56,32 +55,23 @@ This Connectathon is organized into multiple tracks, each focusing on specific u
 
 ## Connectathon Track Details
 
-### Track 1: 
+### Track 1: PH eReferral IG 
+- [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html)
 
-**Objective**: 
+**Objective**: Demonstrate the end-to-end referral lifecycle (create, accept, reject, refer onward, complete/back-refer) between HCPN facilities using ServiceRequest and Task built on PH Core profiles, consistent with UHC Act and DOH AO 2020-0019 requirements.
 
-**Focus Profiles**: 
-
-
-### Track 2:
-
-**Objective**: 
-
-**Focus Profiles**: 
+**Link to Bundle Examples
 
 
-### Track 3: 
 
-**Objective**: 
+### Track 2: PH Core IG
+- [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html)
 
-**Focus Profiles**: 
+**Objective**: Validate that PH Core IG v0.2.0 profiles are implementable by creating, exchanging, and validating a complete encounter record — using the Encounter profile (primary) with Patient, Organization, Condition, Observation, Practitioner, and optionally PractitionerRole — including Philippine-specific identifiers, extensions, and terminology bindings.
+
+**Link to Bundle Examples
 
 
-### Track 4: Immunization Record Exchange
-
-**Objective**: 
-
-**Focus Profiles**:
 
 
 ## International Semantic and Syntactic Standards
