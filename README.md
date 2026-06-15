@@ -2,7 +2,7 @@
 
 <PLACE HOLDER FOR GRAPHIC DESIGN>
 
-The June 2026 Philippines FHIR® Connectathon is co-organized by the National Telehealth Center (NTHC), under the University of the Philippines Manila National Institutes of Health, in partnership with the Department of Health (DOH), Philippine Health Insurance Corporation (PhilHealth), The Strengthening Standards Capability Project (SSCP) of  Commonwealth Scientific and Industrial Research Organisation (CSIRO), Aklan Provincial Health Office, and othterkey stakeholders.
+The June 2026 Philippines FHIR® Connectathon is co-organized by the National Telehealth Center (NTHC), under the University of the Philippines Manila National Institutes of Health, in partnership with the Department of Health (DOH), Philippine Health Insurance Corporation (PhilHealth), The Strengthening Standards Capability Project (SSCP) of Commonwealth Scientific and Industrial Research Organisation (CSIRO), Aklan Provincial Health Office, and other key stakeholders.
 
 This Connectathon represents a milestone in the Philippines' digital health interoperability journey, bringing together healthcare systems, EMR vendors, and government agencies to advance standardized health data exchange using FHIR® profiles including PH Core, eReferral (PeReF), and Immunization specifications.
 
@@ -138,11 +138,11 @@ Participants are encouraged to submit structured feedback on:
 
 FHIR® is a registered trademark of Health Level Seven International.
 
-This Connectathon is made possible through the collaborative efforts of the University of the Philippines Manila National Institutes of Health, Department of Health (DOH), Philippine Health Insurance Corporation (PhilHealth), The Strengthening Standards Capability Project (SSCP) of Commonwealth Scientific and Industrial Research Organisation (CSIRO), Aklan Provincial Health Office, and othterkey stakeholders.
+This Connectathon is made possible through the collaborative efforts of the University of the Philippines Manila National Institutes of Health, Department of Health (DOH), Philippine Health Insurance Corporation (PhilHealth), The Strengthening Standards Capability Project (SSCP) of Commonwealth Scientific and Industrial Research Organisation (CSIRO), Aklan Provincial Health Office, and other key stakeholders.
 
 For questions and queries regarding the Connectathon, please contact **nih-nthc.upmanila@up.edu.ph**.
 
 ---
 
-**Last Updated**: June 11, 2026  
+**Last Updated**: June 15, 2026  
 **Next Review**: Post-Connectathon Debrief
