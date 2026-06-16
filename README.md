@@ -185,10 +185,9 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 ## SUPPLEMENTARY INFORMATION
 
-- [Particpant Packet](https://bit.ly/June2026PHConnectathonPacket)
-
 ### Additional Resources
 
+- [Participant Packet](https://bit.ly/June2026PHConnectathonPacket)
 - [FHIR Official Documentation](https://www.fhir.org/summary.html)
 - [HL7 FHIR Community Chat](https://chat.fhir.org/)
 - [Philippine eHealth Roadmap](https://doh.gov.ph/)
