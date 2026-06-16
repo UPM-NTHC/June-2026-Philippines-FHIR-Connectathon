@@ -38,7 +38,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 | 08:50 AM – 09:00 AM | Welcome Remarks | Western Visayas CHD<br>*[Video recording from RD]* |
 | 09:00 AM – 09:15 AM | Ice Breaker | **Dethalee Gabrielle Velasquez**<br>Project Manager<br>UP NTHC |
 | 09:15 AM – 09:30 AM | Aklan Health Information Exchange | **Dr. Leslie Sedillo**<br>Provincial Health Officer<br>Province of Aklan |
-| 09:30 AM – 10:15 AM | Connectathon: Global Perspective (Panel Discussion) | NTHC and CSIRO |
+| 09:30 AM – 10:15 AM | Connectathon: Global Perspective (Panel Discussion) | Representatives from NTHC and CSIRO |
 | 10:15 AM – 10:30 AM | Introduction to Philippine Core Implementation Guide | **Gerard Paolo Villanueva, RN**<br>Interoperability Specialist<br>UP NTHC |
 | 10:30 AM – 10:45 AM | Morning Break | — |
 | 10:45 AM – 11:00 AM | Philippine eReferral (PeRef) Project | **John Lemuel Dalisay**<br>Community Lead<br>PeRef Project |
@@ -81,7 +81,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 | 01:00 PM - 02:30 PM | Show and Tell | All Participants |
 | 02:30 PM - 02:40 PM | Technical Review | — |
 | 02:40 PM - 02:55 PM | Panel Discussion: Operational Readiness | Selected Participants |
-| 02:55 PM - 03:30 PM | Implementation and Roadmap<br>*"What does good look like for an eReferral in the Philippines?"* | Selected Participants and DOH |
+| 02:55 PM - 03:30 PM | Implementation and Roadmap<br>*"What does good look like for an eReferral in the Philippines?"* | Selected Participants |
 | 03:30 PM - 03:50 PM | Afternoon Break (Event Evaluation) | — |
 | 03:50 PM - 04:10 PM | Aklan Next Steps and Sustainability Road Map | **Aliyah Evangelista**<br>DOH OCIO |
 | 04:10 PM - 04:25 PM | Live Poll: Feedback | **Dethalee Gabrielle Velasquez**<br>Project Manager<br>UP NTHC |
@@ -184,6 +184,8 @@ The Connectathon aims to foster interoperability across health systems by provid
 6. **Bring Questions**: Come prepared with questions about implementation challenges or unclear specifications
 
 ## SUPPLEMENTARY INFORMATION
+
+- [Particpant Packet](https://bit.ly/June2026PHConnectathonPacket)
 
 ### Additional Resources
 
