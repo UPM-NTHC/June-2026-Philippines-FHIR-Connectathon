@@ -1,0 +1,25 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "PSGC",
+  "url": "https://fhir.doh.gov.ph/phcore/CodeSystem/PSGC",
+  "version": "0.1.0",
+  "name": "PSGC",
+  "title": "PSGC",
+  "status": "active",
+  "caseSensitive": false,
+  "valueSet": "https://fhir.doh.gov.ph/phcore/ValueSet/PSGC",
+  "hierarchyMeaning": "part-of",
+  "compositional": false,
+  "versionNeeded": true,
+  "content": "complete",
+  "count": 43770,
+  "property": [
+    {
+      "code": "Geographic Level",
+      "type": "string"
+    }
+  ],
+  "publisher": "UP Manila - National Institutes of Health - National Telehealth Center",
+  "description": "Philippine Standard Geographic Code",
+  "_note": "43770 concepts are stored inline on tx.fhirlab.net/fhir/CodeSystem/PSGC \u2014 omitted here for repo size"
+}
