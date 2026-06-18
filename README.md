@@ -28,8 +28,8 @@ The Connectathon aims to foster interoperability across health systems by provid
 - ***The PH Core IG and PH eReferral IG are draft versions under active development and are not intended for production use. Both guides will be refined and updated based on feedback, issues, and recommendations gathered during the June Connectathon. Content, profiles, and implementation details are subject to change.***
 
 ## PARTICIPANT PACKETS
- [Pre Connectathon Webinar - June 17, 2026](https://drive.google.com/file/d/17CwBt6FdD9OlzchGQBeoeEhR81B1MYDj/view?usp=drive_link)
- [eReferral data elements and UHC Referral Form]( https://drive.google.com/drive/folders/13-2Mq-gSoYumIrA6D3EpLUwo-2_4nnVq?usp=sharing)
+ - [Pre Connectathon Webinar - June 17, 2026](https://drive.google.com/file/d/17CwBt6FdD9OlzchGQBeoeEhR81B1MYDj/view?usp=drive_link)
+ - [eReferral data elements and UHC Referral Form]( https://drive.google.com/drive/folders/13-2Mq-gSoYumIrA6D3EpLUwo-2_4nnVq?usp=sharing)
 
 
 ## EVENT OVERVIEW
@@ -95,26 +95,62 @@ The Connectathon aims to foster interoperability across health systems by provid
 | 04:40 PM - 04:50 PM | Group Photo | All Participants |
 | 04:50 PM - 05:00 PM | Awarding of Certificates | Host |
 
-## CONNECTATHON TRACK DETAILS
+## CONNECTATHON ACTIVITY DETAILS
 
-- ### Track 1: PH eReferral IG [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html)
+- ### Track 1: PH eReferral IG - [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html)
   - **Objective**: Demonstrate the end-to-end referral lifecycle (create, accept, reject, refer onward, complete/back-refer) between healthcare provider network (HCPN) facilities using ServiceRequest and Task built on PH Core profiles, consistent with the Universal Health Care (UHC) Act and DOH Administrative Order (AO) 2020-0019 requirements.
-  - <mark>**Link to Bundle Examples**</mark>
+ 
 
     | Track Lead | Affiliation |
     |------------|-------------|
     | John Lemuel Dalisay | Community Lead, PeRef Project |
     | Dr. Leslie Ann Sedillo | Provincial Health Officer II, Province of Aklan |
 
+    #### **ACTIVITIES:**
+     > **Link to Bundle Examples**
+     1. ***Initiating Facility — new patient, create record***
+                - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
+                - Since no record exists, create patient record – demographics (POST) → 201 Created
+                - Update patient record – clinical data (PUT) → 200 OK
+        2. ****Receiving Facility — record already exists, update it****
+                - Search and retrieve patient record (GET) → 200 OK – returns existing record (created by Initiating Facility)
+                - Update patient record – clinical data (PUT) → 200 OK
+        
+      3. ****LGU Dashboard (PHO Only) — read-only reporting****
+                - Search patients seen by facility based on Referral Category and Reason for Referral (GET) → 200 OK – returns list
+                - Generate report based on Referral Category and Reason for Referral (GET) → 200 OK – returns report
 
-- ### Track 2: PH Core IG [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html)
+
+
+- ### Track 2: PH Core IG - [Draft PH Core FHIR Implementation Guide (IG)](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html)
   - **Objective**: Validate that PH Core IG v0.2.0 profiles are implementable by creating, exchanging, and validating a complete encounter record — using the Encounter profile (primary) with Patient, Organization, Condition, Observation, Practitioner, and optionally PractitionerRole — including Philippines-specific identifiers, extensions, and terminology bindings.
-  - <mark>**Link to Bundle Examples**</mark>
+
 
     | Track Lead | Affiliation |
     |------------|-------------|
     | Gerard Paolo Villanueva | Interoperability Specialist, UP NTHC |
     | Dir. Cherie Esteban | Director III, DOH KMITS |
+
+
+     #### **ACTIVITIES:**
+      > **Link to Bundle Examples**
+    1. ****Point of Service Data Submission**** - Data captured at the point of care is submitted to the FHIR server. The Patient is created first because everything else references it.
+       - Create Patient – demographics (POST /Patient) → 201 Created – server assigns the ID, returned in the Location header
+       - Create Encounter – the visit, references the Patient (POST /Encounter) → 201 Created
+       - Create Condition – the diagnosis, Acute STEMI (POST /Condition) → 201 Created
+       - Create Observation – blood pressure reading (POST /Observation) → 201 Created
+     Or submit all four at once as a single atomic transaction:
+        - Submit transaction Bundle (type: transaction) (POST / to the server root) → 200 OK – returns a transaction-response Bundle, each entry showing 201 with its assigned location
+  
+  
+    2. ****Updating submitted data****
+        - Full replace — read first, modify, send the complete resource including id (PUT /Patient/{id}) → 200 OK – versionId incremented
+        - Partial update — change only specific fields via JSON Patch (PATCH /Patient/{id}) → 200 OK – versionId incremented
+        - Conditional PUT when the server-assigned ID isn't known (PUT /Patient?identifier=system|value) → updates the match if found, or creates a new one if not — avoids duplicates
+        - Delete a resource, e.g. a duplicate reading (DELETE /Observation/{id}) → 200 OK or 204 No Content
+
+
+
 
 
 ## FHIR SERVERS AVAILABLE FOR TESTING DURING THE CONNECTATHON
@@ -151,6 +187,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 
   - **[WHO SMART Guidelines](https://www.who.int/teams/digital-health-and-innovation/smart-guidelines)** - Standards-based workflow approach
 
+
 ## FHIRLab TOOLS AND RESOURCES
 
 - ### FHIR Servers and Tooling
@@ -165,6 +202,7 @@ The Connectathon aims to foster interoperability across health systems by provid
   - **[UploadFIG Utility](https://github.com/brianpos/UploadFIG)** - Upload custom FHIR IGs to local servers
     
 > Note: FHIR® Lab is part of The Strengthening Standards Capability Project (SSCP), co-funded by CSIRO Australia and Australian Government, Department of Foreign Affairs and Trade.
+
 
 ## CONNECTATHON SUCCESS CRITERIA
 
