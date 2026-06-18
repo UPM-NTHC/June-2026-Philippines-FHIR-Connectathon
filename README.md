@@ -108,7 +108,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 
     #### **ACTIVITIES:**
      > **Link to Bundle Examples**
-     1. ***Initiating Facility — new patient, create record***
+     1. ****Initiating Facility — new patient, create record****
                 - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
                 - Since no record exists, create patient record – demographics (POST) → 201 Created
                 - Update patient record – clinical data (PUT) → 200 OK
