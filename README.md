@@ -1,6 +1,7 @@
+
 # June 2026 Philippines FHIR® Connectathon – Boracay, Aklan, Philippines
 
-<PLACE HOLDER FOR GRAPHIC DESIGN>
+<img width="1920" height="1080" alt="June FHIR Connectathon Slide Deck" src="https://github.com/user-attachments/assets/359fde77-8a27-4b98-ab4d-437f91595846" />
 
 The June 2026 Philippines FHIR® Connectathon is co-organized by the National Telehealth Center (NTHC), under the University of the Philippines Manila National Institutes of Health, in partnership with the Department of Health (DOH), Philippine Health Insurance Corporation (PhilHealth), The Strengthening Standards Capability Project (SSCP) of Commonwealth Scientific and Industrial Research Organisation (CSIRO), Aklan Provincial Health Office, and other key stakeholders.
 
