@@ -112,7 +112,8 @@ The Connectathon aims to foster interoperability across health systems by provid
                 - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
                 - Since no record exists, create patient record – demographics (POST) → 201 Created
                 - Update patient record – clinical data (PUT) → 200 OK
-        2. ****Receiving Facility — record already exists, update it****
+
+    2. ****Receiving Facility — record already exists, update it****
                 - Search and retrieve patient record (GET) → 200 OK – returns existing record (created by Initiating Facility)
                 - Update patient record – clinical data (PUT) → 200 OK
         
