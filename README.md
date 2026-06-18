@@ -26,6 +26,11 @@ The Connectathon aims to foster interoperability across health systems by provid
 ## DISCLAIMER: 
 - ***The PH Core IG and PH eReferral IG are draft versions under active development and are not intended for production use. Both guides will be refined and updated based on feedback, issues, and recommendations gathered during the June Connectathon. Content, profiles, and implementation details are subject to change.***
 
+## PARTICIPANT PACKETS
+ [Pre Connectathon Webinar - June 17, 2026](https://drive.google.com/file/d/17CwBt6FdD9OlzchGQBeoeEhR81B1MYDj/view?usp=drive_link)
+ [eReferral data elements and UHC Referral Form]( https://drive.google.com/drive/folders/13-2Mq-gSoYumIrA6D3EpLUwo-2_4nnVq?usp=sharing)
+
+
 ## EVENT OVERVIEW
 
 ### Day 1
@@ -216,6 +221,7 @@ This Connectathon is made possible through the collaborative efforts of the Univ
 For questions and queries regarding the Connectathon, please contact **nih-nthc.upmanila@up.edu.ph**.
 
 ---
+
 
 **Last Updated**: June 15, 2026  
 **Next Review**: Post-Connectathon Debrief
