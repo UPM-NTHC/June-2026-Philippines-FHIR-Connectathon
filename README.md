@@ -109,17 +109,17 @@ The Connectathon aims to foster interoperability across health systems by provid
     #### **ACTIVITIES:**
      > **Link to Bundle Examples**
      1. ****Initiating Facility — new patient, create record****
-                - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
-                - Since no record exists, create patient record – demographics (POST) → 201 Created
-                - Update patient record – clinical data (PUT) → 200 OK
+        - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
+        - Since no record exists, create patient record – demographics (POST) → 201 Created
+        - Update patient record – clinical data (PUT) → 200 OK
 
     2. ****Receiving Facility — record already exists, update it****
-                - Search and retrieve patient record (GET) → 200 OK – returns existing record (created by Initiating Facility)
-                - Update patient record – clinical data (PUT) → 200 OK
+       - Search and retrieve patient record (GET) → 200 OK – returns existing record (created by Initiating Facility)
+       - Update patient record – clinical data (PUT) → 200 OK
         
-      3. ****LGU Dashboard (PHO Only) — read-only reporting****
-                - Search patients seen by facility based on Referral Category and Reason for Referral (GET) → 200 OK – returns list
-                - Generate report based on Referral Category and Reason for Referral (GET) → 200 OK – returns report
+      4. ****LGU Dashboard (PHO Only) — read-only reporting****
+         - Search patients seen by facility based on Referral Category and Reason for Referral (GET) → 200 OK – returns list
+         - Generate report based on Referral Category and Reason for Referral (GET) → 200 OK – returns report
 
 
 
@@ -134,8 +134,9 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 
      #### **ACTIVITIES:**
-      > **Link to Bundle Examples**
+      > **Link to PH Core Bundle Examples** [bundle-acs-case-example](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/Bundle-bundle-acs-case-example.htm)) 
     1. ****Point of Service Data Submission**** - Data captured at the point of care is submitted to the FHIR server. The Patient is created first because everything else references it.
+       - Search Patient - - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
        - Create Patient – demographics (POST /Patient) → 201 Created – server assigns the ID, returned in the Location header
        - Create Encounter – the visit, references the Patient (POST /Encounter) → 201 Created
        - Create Condition – the diagnosis, Acute STEMI (POST /Condition) → 201 Created
@@ -144,7 +145,7 @@ The Connectathon aims to foster interoperability across health systems by provid
         - Submit transaction Bundle (type: transaction) (POST / to the server root) → 200 OK – returns a transaction-response Bundle, each entry showing 201 with its assigned location
   
   
-    2. ****Updating submitted data****
+    3. ****Updating submitted data****
         - Full replace — read first, modify, send the complete resource including id (PUT /Patient/{id}) → 200 OK – versionId incremented
         - Partial update — change only specific fields via JSON Patch (PATCH /Patient/{id}) → 200 OK – versionId incremented
         - Conditional PUT when the server-assigned ID isn't known (PUT /Patient?identifier=system|value) → updates the match if found, or creates a new one if not — avoids duplicates
