@@ -36,64 +36,62 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 ### Day 1
 
-| Time | Agenda | Responsible Person/Team |
-|------|---------|-------------------------|
+| Time | Agenda | Person/Team Responsible |
+|------|---------|------------------------|
 | 08:00 AM – 08:30 AM | Registration | Western Visayas CHD |
-| 08:30 AM – 08:40 AM | Introduction | **Arturo Ongkeko, MSc, RN**<br>Director<br>UP NTHC |
-| 08:40 AM – 08:50 AM | Opening Remarks | **Cherrie Esteban**<br>Department of Health |
-| 08:50 AM – 09:00 AM | Welcome Remarks | Western Visayas CHD<br>*[Video recording from RD]* |
-| 09:00 AM – 09:15 AM | Ice Breaker | **Dethalee Gabrielle Velasquez**<br>Project Manager<br>UP NTHC |
-| 09:15 AM – 09:30 AM | Aklan Health Information Exchange | **Dr. Leslie Sedillo**<br>Provincial Health Officer<br>Province of Aklan |
-| 09:30 AM – 10:15 AM | Connectathon: Global Perspective (Panel Discussion) | Representatives from NTHC and CSIRO |
-| 10:15 AM – 10:30 AM | Introduction to Philippine Core Implementation Guide | **Gerard Paolo Villanueva, RN**<br>Interoperability Specialist<br>UP NTHC |
-| 10:30 AM – 10:45 AM | Morning Break | — |
-| 10:45 AM – 11:00 AM | Philippine eReferral (PeRef) Project | **John Lemuel Dalisay**<br>Community Lead<br>PeRef Project |
-| 11:00 AM – 11:35 AM | PhilHealth: YAKAP IG | PhilHealth NHDR Team |
-| 11:35 AM – 11:50 AM | Overview of Connectathon: Objectives, Tracks, Set Up, and Use Cases | **Gerard Paolo Villanueva, RN**<br>Interoperability Specialist<br>UP NTHC |
-| 11:50 AM – 12:00 PM | Group Photo | All Participants |
-| 12:00 PM – 01:00 PM | Lunch | — |
-| 01:00 PM – 02:30 PM | Terminology Services and FHIR Terminology | **Dr. Sofia Capistrano**<br>Terminology Specialist<br><br>**Dr. Thomas Niccolo Reyes**<br>Interoperability Analyst<br>UP NTHC |
-| 02:30 PM – 02:50 PM | Basic FHIR API – Recap | **Jaylord Ambal**<br>System Administrator<br>UP NTHC |
-| 02:50 PM – 03:30 PM | Software Development | All Participants |
+| 08:30 AM – 08:40 AM | Opening Prayer<br>Philippine National Anthem<br>Introductions | Manu Gaspar<br>Host |
+| 08:40 AM – 08:50 AM | Opening Remarks | Cherrie D. Esteban<br>OIC-Director IV<br>Department of Health – Knowledge Management and Information Technology Service |
+| 08:50 AM – 09:00 AM | Welcome Remarks | Dr. Helen Tobias<br>Regional Director<br>Western Visayas CHD<br><br>Jose Tafalla III<br>Development Management Officer IV<br>PDOHO Aklan |
+| 09:00 AM – 09:15 AM | Ice Breaker | Dethalee Gabrielle Velasquez<br>Project Manager<br>UP NTHC |
+| 09:15 AM – 09:30 AM | Aklan Health Information Exchange | Dr. Leslie Sedillo<br>Provincial Health Officer<br>Province of Aklan |
+| 09:30 AM – 09:50 AM | Connectathon: Global Perspective Presentation | John Carter (CSIRO AEHRC)<br>Ilya Beda (CSIRO AEHRC) |
+| 09:50 AM – 10:05 AM | Introduction to the Philippine Core Implementation Guide | Gerard Paolo Villanueva, RN<br>Interoperability Specialist<br>UP NTHC |
+| 10:05 AM – 10:20 AM | Philippine eReferral (PHeRef) Project | John Lemuel Dalisay<br>Community Lead<br>PHeRef Project |
+| 10:20 AM – 10:50 AM | Open Forum | **Panelists:**<br>John Carter (CSIRO AEHRC)<br>Ilya Beda (CSIRO AEHRC)<br>Gerard Paolo Villanueva (PH Core)<br>John Lemuel Dalisay (PHeRef)<br>Dr. Leslie Sedillo (PHO Aklan)<br>Dr. Alvin Marcelo (AeHIN)<br><br>**Facilitator:** Dir. Art Ongkeko (NTHC) |
+| 10:50 AM – 11:05 AM | Morning Break | — |
+| 11:05 AM – 11:20 AM | Overview of Connectathon: Objectives, Tracks, Set Up, and Use Cases | Gerard Paolo Villanueva, RN<br>Interoperability Specialist<br>UP NTHC |
+| 11:20 AM – 11:40 AM | Basic FHIR API - Recap | Jaylord Ambal<br>System Administrator<br>UP NTHC |
+| 11:40 AM – 01:00 PM | Group Photo<br>Lunch Break | All Participants |
+| 01:00 PM – 02:30 PM | Terminology Services and FHIR Terminology | Dr. Sofia Capistrano<br>Terminology Specialist<br><br>Dr. Thomas Niccolo Reyes<br>Interoperability Analyst<br>UP NTHC |
+| 02:30 PM – 03:30 PM | Software Development | All Participants |
 | 03:30 PM – 04:50 PM | Working Afternoon Break (Software Development) | All Participants |
-| 04:50 PM – 05:00 PM | Wrap-up for Day 1 (Feedback Registry) | **Errol Buenaventura**<br>Interoperability Analyst<br>UP NTHC |
+| 04:50 PM – 05:00 PM | Wrap-up for Day 1 (Feedback Registry) | Errol Buenaventura<br>Interoperability Analyst<br>UP NTHC |
 
 ### Day 2
 
-| Time | Agenda | Responsible Person/Team |
-|------|--------|------------------------|
-| 08:00 AM - 08:30 AM | Registration | Western Visayas CHD |
-| 08:30 AM - 08:40 AM | Recap Day 1 | **Errol Buenaventura**<br>Interoperability Analyst<br>UP NTHC |
-| 08:40 AM - 10:30 AM | Software Development | All Participants |
-| 10:30 AM - 11:00 AM | Working Morning Break (Software Development) | All Participants |
-| 11:00 AM - 12:00 PM | Software Development | All Participants |
-| 12:00 PM - 01:00 PM | Lunch | — |
-| 01:00 PM - 03:30 PM | Software Development | All Participants |
-| 03:30 PM - 04:00 PM | Afternoon Break | — |
-| 04:00 PM - 04:30 PM | Software Development (Polishing) | All Participants |
-| 04:30 PM - 04:50 PM | Orientation for Show and Tell (Demonstration) | **Gerard Paolo Villanueva, RN**<br>Interoperability Specialist<br>UP NTHC |
-| 04:50 PM - 05:00 PM | Wrap up for Day 2 (Feedback Registry) | **Lawrence Macalalad**<br>Interoperability Analyst<br>UP NTHC |
+| Time | Agenda | Person/Team Responsible |
+|------|---------|------------------------|
+| 08:00 AM – 08:30 AM | Registration | Western Visayas CHD |
+| 08:30 AM – 08:40 AM | Recap Day 1 | Errol Buenaventura<br>Interoperability Analyst<br>UP NTHC |
+| 08:40 AM – 10:30 AM | Software Development | All Participants |
+| 10:30 AM – 11:00 AM | Working Morning Break (Software Development) | All Participants |
+| 11:00 AM – 12:00 PM | Software Development | All Participants |
+| 12:00 PM – 01:00 PM | Lunch Break | All Participants |
+| 01:00 PM – 03:30 PM | Software Development | All Participants |
+| 03:30 PM – 04:00 PM | Afternoon Break | All Participants |
+| 04:00 PM – 04:30 PM | Software Development (Polishing) | All Participants |
+| 04:30 PM – 04:50 PM | Orientation for Show and Tell (Demonstration) | Gerard Paolo Villanueva, RN<br>Interoperability Specialist<br>UP NTHC |
+| 04:50 PM – 05:00 PM | Wrap-up for Day 2 (Feedback Registry) | Lawrence Macalalad<br>Interoperability Analyst<br>UP NTHC |
 
 ### Day 3
 
 | Time | Agenda | Person/Team Responsible |
-|------|--------|------------------------|
-| 08:00 AM - 08:30 AM | Registration | Western Visayas CHD |
-| 08:30 AM - 09:00 AM | Recap Day 2 | **Lawrence Macalalad**<br>Interoperability Analyst<br>UP NTHC |
-| 09:00 AM - 10:30 AM | Software Development (Polishing) | All Participants |
-| 10:30 AM - 11:00 AM | Working Morning Break (Software Development) | All Participants |
-| 11:00 AM - 12:00 PM | Preparation for Show and Tell | All Participants |
-| 12:00 PM - 01:00 PM | Lunch | — |
-| 01:00 PM - 02:30 PM | Show and Tell | All Participants |
-| 02:30 PM - 02:40 PM | Technical Review | — |
-| 02:40 PM - 02:55 PM | Panel Discussion: Operational Readiness | Selected Participants |
-| 02:55 PM - 03:30 PM | Implementation and Roadmap<br>*"What does good look like for an eReferral in the Philippines?"* | Selected Participants |
-| 03:30 PM - 03:50 PM | Afternoon Break (Event Evaluation) | — |
-| 03:50 PM - 04:10 PM | Aklan Next Steps and Sustainability Road Map | **Aliyah Evangelista**<br>DOH OCIO |
-| 04:10 PM - 04:25 PM | Live Poll: Feedback | **Dethalee Gabrielle Velasquez**<br>Project Manager<br>UP NTHC |
-| 04:25 PM - 04:40 PM | Closing Ceremony | **Dr. Leslie Ann L. Sedillo**<br>PHO II<br>Province of Aklan |
-| 04:40 PM - 04:50 PM | Group Photo | All Participants |
-| 04:50 PM - 05:00 PM | Awarding of Certificates | Host |
+|------|---------|------------------------|
+| 08:00 AM – 09:00 AM | Registration | Western Visayas CHD |
+| 09:00 AM – 09:20 AM | Recap Day 2 | Lawrence Macalalad<br>Interoperability Analyst<br>UP NTHC |
+| 09:20 AM – 10:30 AM | Software Development (Polishing) | All Participants |
+| 10:30 AM – 11:00 AM | Working Morning Break (Software Development) | All Participants |
+| 11:00 AM – 12:00 PM | Preparation for Show and Tell | All Participants |
+| 12:00 PM – 01:00 PM | Lunch Break | All Participants |
+| 01:00 PM – 02:40 PM | Show and Tell | All Participants |
+| 02:40 PM – 03:00 PM | Technical Review & Open Forum | Facilitator: Dir. Art Ongkeko |
+| 03:00 PM – 03:30 PM | Small-Group Discussion: Operational Readiness | All Participants |
+| 03:30 PM – 03:45 PM | Afternoon Break | All Participants |
+| 03:45 PM – 04:15 PM | Plenary Presentation and Feedback Session | **Reactors:**<br>Aliyah Evangelista (DOH OCIO)<br>Dr. Leslie Sedillo (PHO Aklan)<br>Dir. Cherrie Esteban (DOH KMITS)<br>Dr. Philip Zuniga (ADB)<br>Ms. Agnes Kristine Quilinguing (ADB)<br>Eladio Alamar (PSA)<br><br>**Facilitator:** Dir. Art Ongkeko |
+| 04:15 PM – 04:30 PM | Aklan Next Steps and Sustainability Road Map | Aliyah Evangelista<br>DOH OCIO |
+| 04:30 PM – 04:40 PM | Live Poll: Feedback | Dethalee Gabrielle Velasquez<br>Project Manager<br>UP NTHC |
+| 04:40 PM – 04:50 PM | Closing Ceremony | Dr. Leslie Ann L. Sedillo<br>PHO II<br>Province of Aklan |
+| 04:50 PM – 05:00 PM | Group Photo<br>Awarding of Certificates | Host |
 
 ## CONNECTATHON ACTIVITY DETAILS
 
