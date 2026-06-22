@@ -157,10 +157,11 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 | Version | Server | Endpoint | Capabilities |
 |-------------|---------|-------------|-------------|
-| FHIR R4 | FHIRLab (HAPI FHIR) | To be updated (06/19/2026) | CRUD, transaction, validation |
-| FHIR R4 | Ontoserver Terminology | To be updated (06/19/2026) | $expand, $validate-code, $lookup |
-| FHIR R4 | Ontoserver with Shrimp Viewer | To be updated (06/19/2026) | Terminology browsing & visualization |
-| FHIR R4 | FHIRPortal (HAPI FHIR) | To be updated (06/19/2026) | Back Up HAPI FHIR Server. **Do not use unless instructed**|
+| FHIR R4 | FHIRLab (HAPI FHIR) - PH eReferral | [cdr.pheref.fhirlab.net](cdr.pheref.fhirlab.net) | CRUD, transaction, validation |
+| FHIR R4 | FHIRLab (HAPI FHIR) - PH Core | [cdr.phcore.fhirlab.net](cdr.phcore.fhirlab.net) | CRUD, transaction, validation |
+| FHIR R4 | Ontoserver Terminology | [tx.fhirlab.net](tx.fhirlab.net) | $expand, $validate-code, $lookup |
+| FHIR R4 | Ontoserver with Shrimp Viewer | [tx.fhirlab.net](tx.fhirlab.net) | Terminology browsing & visualization |
+| FHIR R4 | FHIRPortal (HAPI FHIR) | To be updated | Back Up HAPI FHIR Server. **Do not use unless instructed**|
 
 > **Note**: FHIRLab is an open interoperability sandbox maintained as part of The Strengthening Standards Capability Project (SSCP), co-funded by CSIRO Australia and the Australian Government, Department of Foreign Affairs and Trade. FHIR servers will remain accessible for testing and ongoing learning activities post-Connectathon.
 
