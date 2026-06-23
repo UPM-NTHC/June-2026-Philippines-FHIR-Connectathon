@@ -133,21 +133,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 
      #### **ACTIVITIES:**
       > **Link to PH Core Bundle Examples** [bundle-acs-case-example](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/Bundle-bundle-acs-case-example.htm)) 
-    1. ****Point of Service Data Submission**** - Data captured at the point of care is submitted to the FHIR server. The Patient is created first because everything else references it.
-       - Search Patient - - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
-       - Create Patient – demographics (POST /Patient) → 201 Created – server assigns the ID, returned in the Location header
-       - Create Encounter – the visit, references the Patient (POST /Encounter) → 201 Created
-       - Create Condition – the diagnosis, Acute STEMI (POST /Condition) → 201 Created
-       - Create Observation – blood pressure reading (POST /Observation) → 201 Created
-     Or submit all four at once as a single atomic transaction:
-        - Submit transaction Bundle (type: transaction) (POST / to the server root) → 200 OK – returns a transaction-response Bundle, each entry showing 201 with its assigned location
-  
-  
-    3. ****Updating submitted data****
-        - Full replace — read first, modify, send the complete resource including id (PUT /Patient/{id}) → 200 OK – versionId incremented
-        - Partial update — change only specific fields via JSON Patch (PATCH /Patient/{id}) → 200 OK – versionId incremented
-        - Conditional PUT when the server-assigned ID isn't known (PUT /Patient?identifier=system|value) → updates the match if found, or creates a new one if not — avoids duplicates
-        - Delete a resource, e.g. a duplicate reading (DELETE /Observation/{id}) → 200 OK or 204 No Content
+    1. <for update>
 
 
 
@@ -160,7 +146,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 | FHIR R4 | FHIRLab (HAPI FHIR) - PH eReferral | [cdr.pheref.fhirlab.net](https://cdr.pheref.fhirlab.net/) | CRUD, transaction, validation |
 | FHIR R4 | FHIRLab (HAPI FHIR) - PH Core | [cdr.phcore.fhirlab.net](https://cdr.phcore.fhirlab.net/) | CRUD, transaction, validation |
 | FHIR R4 | Ontoserver Terminology | [tx.fhirlab.net](https://ontoserver.csiro.au/ui/about) | $expand, $validate-code, $lookup |
-| FHIR R4 | Ontoserver with Shrimp Viewer | [tx.fhirlab.net/shrimp](https://ontoserver.csiro.au/shrimp/?concept=138875005&valueset=http%3A%2F%2Fsnomed.info%2Fsct%3Ffhir_vs&fhir=https%3A%2F%2Ftx.fhirlab.net%2Ffhir) | Terminology browsing & visualization |
+| FHIR R4 | Ontoserver with Shrimp Viewer | [tx.fhirlab.net](https://ontoserver.csiro.au/shrimp/?concept=138875005&valueset=http%3A%2F%2Fsnomed.info%2Fsct%3Ffhir_vs&fhir=https%3A%2F%2Ftx.fhirlab.net%2Ffhir) | Terminology browsing & visualization |
 | FHIR R4 | FHIRPortal (HAPI FHIR) | To be updated | Back Up HAPI FHIR Server. **Do not use unless instructed**|
 
 > **Note**: FHIRLab is an open interoperability sandbox maintained as part of The Strengthening Standards Capability Project (SSCP), co-funded by CSIRO Australia and the Australian Government, Department of Foreign Affairs and Trade. FHIR servers will remain accessible for testing and ongoing learning activities post-Connectathon.
