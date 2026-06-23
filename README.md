@@ -105,19 +105,113 @@ The Connectathon aims to foster interoperability across health systems by provid
     | Dr. Leslie Ann Sedillo | Provincial Health Officer II, Province of Aklan |
 
     #### **ACTIVITIES:**
-     > **Link to Bundle Examples**
-     1. ****Initiating Facility — new patient, create record****
-        - Search for existing patient record (GET) → 200 OK – empty result (no match = new patient)
-        - Since no record exists, create patient record – demographics (POST) → 201 Created
-        - Update patient record – clinical data (PUT) → 200 OK
 
-    2. ****Receiving Facility — record already exists, update it****
-       - Search and retrieve patient record (GET) → 200 OK – returns existing record (created by Initiating Facility)
-       - Update patient record – clinical data (PUT) → 200 OK
-        
-      4. ****LGU Dashboard (PHO Only) — read-only reporting****
-         - Search patients seen by facility based on Referral Category and Reason for Referral (GET) → 200 OK – returns list
-         - Generate report based on Referral Category and Reason for Referral (GET) → 200 OK – returns report
+    **Use Case 0: Terminology Preparation**
+    Before submitting or retrieving an eReferral, retrieve and validate the value sets for each coded data element from the terminology server via `ValueSet/$expand`.
+
+    | AC # | Data Element | Value Set | GET URL |
+    |------|-------------|-----------|---------|
+    | 0.01 | Practitioner Role | `practitioner-role` | `GET [base]/ValueSet/$expand?url=https://www.fhir.doh.gov.ph/pheref/ValueSet/practitioner-role` |
+    | 0.02 | Referral Category | `referral-category` | `GET [base]/ValueSet/$expand?url=https://www.fhir.doh.gov.ph/pheref/ValueSet/referral-category` |
+    | 0.03 | Reason for Referral (Service Type) | `reason-for-referral-service-type` | `GET [base]/ValueSet/$expand?url=https://www.fhir.doh.gov.ph/pheref/ValueSet/reason-for-referral-service-type` |
+    | 0.04 | PWD Disability Type | `pwd-disability-type-vs` | `GET [base]/ValueSet/$expand?url=https://fhir.doh.gov.ph/pheref/ValueSet/pwd-disability-type-vs` |
+    | 0.05 | Administrative Gender | `administrative-gender` (base FHIR) | `GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/administrative-gender` |
+    | 0.06 | Task Status | `task-status` (base FHIR) | `GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/task-status` |
+    | 0.07 | Contact Point System / Use | `contact-point-system` / `contact-point-use` (base FHIR) | `GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/contact-point-system` |
+
+    **Use Case 1: Initiating Facility Submits eReferral (PUT/POST)**
+    The referring (initiating) facility submits one eReferral transaction (bundle) to the Shared Health Records (SHR). Demographics and referral metadata are PUT; clinical data are POST.
+
+    | AC # | Interaction | Data Element | FHIR Resource & Element |
+    |------|------------|-------------|------------------------|
+    | 1.01 | PUT | Name of Referring Practitioner | `Practitioner.name` |
+    | 1.02 | PUT | Care Navigator | `Practitioner.name` |
+    | 1.03 | PUT | Practitioner Role | `PractitionerRole.code` |
+    | 1.04 | PUT | Date & Time of Signature | `Provenance.recorded` |
+    | 1.05 | PUT | Professional Signature | `Provenance.signature` |
+    | 1.06 | PUT | Initiating Facility Name | `Organization.name` |
+    | 1.07 | PUT | Initiating Facility NHFR Code | `Organization.identifier(NHFR).value` |
+    | 1.08 | PUT | Initiating Facility Address | `Organization.address` |
+    | 1.09 | PUT | Initiating Facility Contact Number | `Organization.telecom` |
+    | 1.10 | PUT | Receiving Facility Name | `Organization.name` |
+    | 1.11 | PUT | Receiving Facility NHFR Code | `Organization.identifier(NHFR).value` |
+    | 1.12 | PUT | HCPN Name | `Organization.identifier(HCPN).value` |
+    | 1.13 | PUT | Date of Referral | `ServiceRequest.authoredOn` |
+    | 1.14 | PUT | Referral Category | `ServiceRequest.priority` |
+    | 1.15 | PUT | Reason for Referral (service type) | `ServiceRequest.category` |
+    | 1.16 | PUT | Time Called | `Task.authoredOn` |
+    | 1.17 | PUT | Action Point: Received | `Task.status` |
+    | 1.18 | PUT | Action Point: Referred (Forwarded) | `Task.status` |
+    | 1.19 | PUT | Patient Full Name | `Patient.name` |
+    | 1.20 | PUT | Sex (Administrative Gender) | `Patient.gender` |
+    | 1.21 | PUT | Birth Date | `Patient.birthDate` |
+    | 1.22 | PUT | Age (computed) | `Patient.birthDate` |
+    | 1.23 | PUT | Identity Number (PhilSys) | `Patient.identifier(PHCorePhilSysID)` |
+    | 1.24 | PUT | PhilHealth ID | `Patient.identifier(PHCorePhilHealthID)` |
+    | 1.25 | PUT | Patient Address | `Patient.address` |
+    | 1.26 | PUT | Contact Number | `Patient.telecom` |
+    | 1.27 | PUT | Accompanied By / Next of Kin | `Patient.contact` |
+    | 1.28 | PUT | Patient Disability Registration | `Patient.extension[pwdDisability]` |
+    | 1.29 | POST | Chief Complaint | `Condition.code.text`, `Condition.category = problem-list-item` |
+    | 1.30 | POST | Clinical History | `Condition.note` |
+    | 1.31 | POST | Working Impression (clinical reason) | `Condition.code`, `Condition.category = encounter-diagnosis` |
+    | 1.32 | POST | Vital Signs – Blood Pressure | `Observation` (code, value[x], category=vital-signs, component systolic/diastolic) |
+    | 1.33 | POST | Vital Signs – Heart Rate | `Observation` (code, value[x], category=vital-signs) |
+    | 1.34 | POST | Vital Signs – Respiratory Rate | `Observation` (code, value[x], category=vital-signs) |
+    | 1.35 | POST | Vital Signs – Oxygen Saturation | `Observation` (code, value[x], category=vital-signs) |
+    | 1.36 | POST | Vital Signs – Temperature | `Observation` (code, value[x], category=vital-signs) |
+    | 1.37 | POST | Vital Signs – Weight | `Observation` (code, value[x], category=vital-signs) |
+    | 1.38 | POST | Treatment Given | `Procedure.note` |
+    | 1.39 | POST | Laboratory Results (attachments) | `DiagnosticReport.presentedForm(Attachment.data)` |
+
+    **Use Case 2: Receiving Facility Retrieves eReferral (GET)**
+    The receiving facility retrieves the eReferral transaction (bundle) from the SHR previously submitted by the referring facility and updates action points.
+
+    | AC # | Interaction | Data Element | FHIR Resource & Element |
+    |------|------------|-------------|------------------------|
+    | 2.01 | GET | Name of Referring Practitioner | `Practitioner.name` |
+    | 2.02 | GET | Care Navigator | `Practitioner.name` |
+    | 2.03 | GET | Practitioner Role | `PractitionerRole.code` |
+    | 2.04 | GET | Date & Time of Signature | `Provenance.recorded` |
+    | 2.05 | GET | Professional Signature | `Provenance.signature` |
+    | 2.06 | GET | Initiating Facility Name | `Organization.name` |
+    | 2.07 | GET | Initiating Facility NHFR Code | `Organization.identifier(NHFR).value` |
+    | 2.08 | GET | Initiating Facility Address | `Organization.address` |
+    | 2.09 | GET | Initiating Facility Contact Number | `Organization.telecom` |
+    | 2.10 | GET | Receiving Facility Name | `Organization.name` |
+    | 2.11 | GET | Receiving Facility NHFR Code | `Organization.identifier(NHFR).value` |
+    | 2.12 | GET | HCPN Name | `Organization.identifier(HCPN).value` |
+    | 2.13 | GET | Date of Referral | `ServiceRequest.authoredOn` |
+    | 2.14 | GET | Referral Category | `ServiceRequest.priority` |
+    | 2.15 | GET | Reason for Referral (service type) | `ServiceRequest.category` |
+    | 2.16 | GET | Time Called | `Task.authoredOn` |
+    | 2.17 | PUT | Action Point: Received | `Task.status` |
+    | 2.18 | PUT | Action Point: Referred (Forwarded) | `Task.status` |
+    | 2.19 | GET | Patient Full Name | `Patient.name` |
+    | 2.20 | GET | Sex (Administrative Gender) | `Patient.gender` |
+    | 2.21 | GET | Birth Date | `Patient.birthDate` |
+    | 2.22 | GET | Age (computed) | `Patient.birthDate` |
+    | 2.23 | GET | Identity Number (PhilSys) | `Patient.identifier(PHCorePhilSysID)` |
+    | 2.24 | GET | PhilHealth ID | `Patient.identifier(PHCorePhilHealthID)` |
+    | 2.25 | GET | Patient Address | `Patient.address` |
+    | 2.26 | GET | Contact Number | `Patient.telecom` |
+    | 2.27 | GET | Accompanied By / Next of Kin | `Patient.contact` |
+    | 2.28 | GET | Patient Disability Registration | `Patient.extension[pwdDisability]` |
+    | 2.29 | GET | Chief Complaint | `Condition.code.text`, `Condition.category = problem-list-item` |
+    | 2.30 | GET | Clinical History | `Condition.note` |
+    | 2.31 | GET | Working Impression (clinical reason) | `Condition.code`, `Condition.category = encounter-diagnosis` |
+    | 2.32 | GET | Vital Signs – Blood Pressure | `Observation` (code, value[x], category=vital-signs, component) |
+    | 2.33 | GET | Vital Signs – Heart Rate | `Observation` (code, value[x], category=vital-signs) |
+    | 2.34 | GET | Vital Signs – Respiratory Rate | `Observation` (code, value[x], category=vital-signs) |
+    | 2.35 | GET | Vital Signs – Oxygen Saturation | `Observation` (code, value[x], category=vital-signs) |
+    | 2.36 | GET | Vital Signs – Temperature | `Observation` (code, value[x], category=vital-signs) |
+    | 2.37 | GET | Vital Signs – Weight | `Observation` (code, value[x], category=vital-signs) |
+    | 2.38 | GET | Treatment Given | `Procedure.note` |
+    | 2.39 | GET | Laboratory Results (attachments) | `DiagnosticReport.presentedForm(Attachment.data)` |
+
+    **Activity 4: LGU Dashboard (PHO Only) — Read-Only Reporting**
+    - Search patients seen by facility based on Referral Category and Reason for Referral (GET) → 200 OK – returns list
+    - Generate report based on Referral Category and Reason for Referral (GET) → 200 OK – returns report
 
 
 
@@ -132,8 +226,30 @@ The Connectathon aims to foster interoperability across health systems by provid
 
 
      #### **ACTIVITIES:**
-      > **Link to PH Core Bundle Examples** [bundle-acs-case-example](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/index.html](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/Bundle-bundle-acs-case-example.htm)) 
-    1. <for update>
+      > **Bundle Example**: [bundle-acs-case-example](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/Bundle-bundle-acs-case-example.html)
+
+    1. **Create Encounter Record — Submit resources to FHIRLab**
+       - POST /Patient — create patient with PH Core identifiers (PhilSys, PhilHealth, NHFR)
+       - POST /Organization — create facility organization
+       - POST /Practitioner — create attending practitioner
+       - POST /PractitionerRole — associate practitioner with organization and role
+       - POST /Condition — add encounter diagnosis (category = encounter-diagnosis)
+       - POST /Observation — add vital signs (blood pressure, heart rate, temperature, etc.) with category = vital-signs
+       - POST /Encounter — create the encounter referencing Patient, Practitioner, Organization, and Condition
+       - Validate each resource against the PH Core IG profiles
+
+    2. **Search and Retrieve — Query records from FHIRLab**
+       - GET /Patient?identifier=... — search patient by PhilSys or PhilHealth ID
+       - GET /Encounter?patient=... — retrieve encounter history for a patient
+       - GET /Observation?patient=...&category=vital-signs — retrieve vital signs
+       - GET /Condition?patient=... — retrieve conditions/diagnoses
+       - GET /Organization — retrieve facility details
+       - Verify returned resources conform to PH Core profiles
+
+    3. **Bundle Transaction — Submit multiple resources in a single transaction**
+       - POST with Bundle.type = transaction containing Patient, Organization, Practitioner, PractitionerRole, Encounter, Condition, and Observation entries
+       - Verify full transaction succeeds (200 OK) or fails atomically (4xx/5xx)
+       - Retrieve the bundle entries using the returned references
 
 
 
@@ -145,8 +261,8 @@ The Connectathon aims to foster interoperability across health systems by provid
 |-------------|---------|-------------|-------------|
 | FHIR R4 | FHIRLab (HAPI FHIR) - PH eReferral | [cdr.pheref.fhirlab.net](https://cdr.pheref.fhirlab.net/) | CRUD, transaction, validation |
 | FHIR R4 | FHIRLab (HAPI FHIR) - PH Core | [cdr.phcore.fhirlab.net](https://cdr.phcore.fhirlab.net/) | CRUD, transaction, validation |
-| FHIR R4 | Ontoserver Terminology | [tx.fhirlab.net](https://ontoserver.csiro.au/ui/about) | $expand, $validate-code, $lookup |
-| FHIR R4 | Ontoserver with Shrimp Viewer | [tx.fhirlab.net](https://ontoserver.csiro.au/shrimp/?concept=138875005&valueset=http%3A%2F%2Fsnomed.info%2Fsct%3Ffhir_vs&fhir=https%3A%2F%2Ftx.fhirlab.net%2Ffhir) | Terminology browsing & visualization |
+| FHIR R4 | Ontoserver Terminology | [ontoserver.csiro.au/ui/about](https://ontoserver.csiro.au/ui/about) | $expand, $validate-code, $lookup |
+| FHIR R4 | Ontoserver with Shrimp Viewer | [ontoserver.csiro.au/shrimp/](https://ontoserver.csiro.au/shrimp/?concept=138875005&valueset=http%3A%2F%2Fsnomed.info%2Fsct%3Ffhir_vs&fhir=https%3A%2F%2Ftx.fhirlab.net%2Ffhir) | Terminology browsing & visualization |
 | FHIR R4 | FHIRPortal (HAPI FHIR) | To be updated | Back Up HAPI FHIR Server. **Do not use unless instructed**|
 
 > **Note**: FHIRLab is an open interoperability sandbox maintained as part of The Strengthening Standards Capability Project (SSCP), co-funded by CSIRO Australia and the Australian Government, Department of Foreign Affairs and Trade. FHIR servers will remain accessible for testing and ongoing learning activities post-Connectathon.
@@ -178,7 +294,8 @@ The Connectathon aims to foster interoperability across health systems by provid
 ## FHIRLab TOOLS AND RESOURCES
 
 - ### FHIR Servers and Tooling
-  - **[FHIR Server (HAPI FHIR Endpoint)](https://cdr.fhirlab.net/fhir)** - Main FHIR server for resource submissions and retrieval
+  - **[FHIR Server — PH eReferral (HAPI FHIR)](https://cdr.pheref.fhirlab.net/fhir)** - eReferral FHIR server for resource submissions and retrieval
+  - **[FHIR Server — PH Core (HAPI FHIR)](https://cdr.phcore.fhirlab.net/fhir)** - PH Core FHIR server for resource submissions and retrieval
   - **[Terminology Server (Ontoserver Endpoint)](https://tx.fhirlab.net/fhir)** - ValueSet and terminology operations
   - **[Terminology Browser (Ontoserver + Shrimp)](https://ontoserver.csiro.au/shrimp/)** - Visual terminology browsing and mapping
 
@@ -249,5 +366,5 @@ For questions and queries regarding the Connectathon, please contact **nih-nthc.
 ---
 
 
-**Last Updated**: June 15, 2026  
+**Last Updated**: June 23, 2026  
 **Next Review**: Post-Connectathon Debrief
