@@ -96,7 +96,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 ## CONNECTATHON ACTIVITY DETAILS
 
 - ### Track 1: PH eReferral IG - [Draft PH eReferral FHIR Implementation Guide (IG)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/index.html)
-  - **Objective**: Demonstrate the end-to-end referral lifecycle (create, accept, reject, refer onward, complete/back-refer) between healthcare provider network (HCPN) facilities using ServiceRequest and Task built on PH Core profiles, consistent with the Universal Health Care (UHC) Act and DOH Administrative Order (AO) 2020-0019 requirements.
+  - **Objective**: Demonstrate forward referral (create, accept, reject) between healthcare provider network (HCPN) facilities using ServiceRequest and Task built on PH Core profiles, consistent with the Universal Health Care (UHC) Act and DOH Administrative Order (AO) 2020-0019 requirements.
  
 
     | Track Lead | Affiliation |
