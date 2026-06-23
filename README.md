@@ -105,6 +105,31 @@ The Connectathon aims to foster interoperability across health systems by provid
     | Dr. Leslie Ann Sedillo | Provincial Health Officer II, Province of Aklan |
 
     #### **ACTIVITIES:**
+     > 📖 **Essential Reading**: Participants must review the [PHeRef End-to-End Sample Case (Ana Reyes)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/sample-case-ana-reyes.html) for complete bundle examples and step-by-step guidance on conditional updates.
+
+     > **Bundle Examples**: [PHeRef Bundle Examples](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/sample-case-ana-reyes.html)
+
+     ##### Conditional Update (PUT) Pattern
+     All PUT operations in this track use **conditional update by identifier** — the server creates the resource if no matching identifier exists, otherwise updates the existing one:
+
+     ```
+     PUT /{Resource}?identifier={system}|{value}
+     ```
+
+     For Organization, use the NHFR code system:
+     ```
+     PUT /Organization?identifier=https://fhir.doh.gov.ph/phcore/Identifier/doh-nhfr-code|{organization_code}
+     ```
+
+     | Resource | Identifier System | Example |
+     |----------|-------------------|---------|
+     | Organization | `https://fhir.doh.gov.ph/phcore/Identifier/doh-nhfr-code` | `PUT /Organization?identifier=https://fhir.doh.gov.ph/phcore/Identifier/doh-nhfr-code|123456` |
+     | Practitioner | `https://fhir.doh.gov.ph/phcore/Identifier/doh-prc-license-number` | `PUT /Practitioner?identifier=https://fhir.doh.gov.ph/phcore/Identifier/doh-prc-license-number|PRC-12345` |
+     | Patient (PhilHealth) | `http://philhealth.gov.ph/fhir/Identifier/philhealth-id` | `PUT /Patient?identifier=http://philhealth.gov.ph/fhir/Identifier/philhealth-id|1234-567890` |
+     | Patient (PhilSys) | `http://philsys.gov.ph/fhir/Identifier/philsys-id` | `PUT /Patient?identifier=http://philsys.gov.ph/fhir/Identifier/philsys-id|1234-567890-1234` |
+     | ServiceRequest | Referral identifier | `PUT /ServiceRequest?identifier={referral_id}` |
+
+     The NHFR (National Health Facility Registry) code system is bound via: [PH Core DOH NHFR Code](https://build.fhir.org/ig/UP-Manila-SILab/ph-core/en/StructureDefinition-ph-core-doh-nhfr-code.html)
 
     **Use Case 0: Terminology Preparation**
     Before submitting or retrieving an eReferral, retrieve and validate the value sets for each coded data element from the terminology server via `ValueSet/$expand`.
@@ -120,7 +145,7 @@ The Connectathon aims to foster interoperability across health systems by provid
     | 0.07 | Contact Point System / Use | `contact-point-system` / `contact-point-use` (base FHIR) | `GET [base]/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/contact-point-system` |
 
     **Use Case 1: Initiating Facility Submits eReferral (PUT/POST)**
-    The referring (initiating) facility submits one eReferral transaction (bundle) to the Shared Health Records (SHR). Demographics and referral metadata are PUT; clinical data are POST.
+    The referring (initiating) facility submits one eReferral transaction (bundle) to the Shared Health Records (SHR). Demographics and referral metadata are PUT (using conditional update by identifier); clinical data are POST.
 
     | AC # | Interaction | Data Element | FHIR Resource & Element |
     |------|------------|-------------|------------------------|
@@ -336,6 +361,7 @@ The Connectathon aims to foster interoperability across health systems by provid
 ### Additional Resources
 
 - [Participant Packet](https://drive.google.com/drive/folders/13-2Mq-gSoYumIrA6D3EpLUwo-2_4nnVq?usp=drive_link)
+- [PHeRef End-to-End Sample Case (Ana Reyes)](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/sample-case-ana-reyes.html) — Reference bundle examples and conditional update guide for Track 1
 - [FHIR Official Documentation](https://www.fhir.org/summary.html)
 - [HL7 FHIR Community Chat](https://chat.fhir.org/)
 - [Philippine eHealth Roadmap](https://doh.gov.ph/)
