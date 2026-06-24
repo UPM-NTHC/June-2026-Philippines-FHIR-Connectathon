@@ -27,6 +27,24 @@ The Connectathon aims to foster interoperability across health systems by provid
 ## DISCLAIMER: 
 - ***The PH Core IG and PH eReferral IG are draft versions under active development and are not intended for production use. Both guides will be refined and updated based on feedback, issues, and recommendations gathered during the June Connectathon. Content, profiles, and implementation details are subject to change.***
 
+## Postman Collection
+
+A fully parameterized Postman collection is available at [`ph-ereferral-collection/`](ph-ereferral-collection/) for testing the PH eReferral (Track 1) workflow. Import both files into Postman:
+
+| File | Description |
+|------|-------------|
+| [`ph-ereferral-collection.json`](ph-ereferral-collection/ph-ereferral-collection.json) | Collection with 18 requests: 1 combined Bundle transaction (POST) and 17 individual resource requests (PUT/POST) covering all PH eReferral profiles |
+| [`ph-ereferral-connectathon-environment.json`](ph-ereferral-collection/ph-ereferral-connectathon-environment.json) | Environment preset with `{{baseUrl}}` pointing to the FHIRLab eReferral server |
+
+**Key features:**
+- **87 collection variables** mapped to [PH eReferral Data Dictionary REF-IDs](https://build.fhir.org/ig/ph-ereferral-organization/ph-ereferral/en/data-dictionary.html) — edit once, apply everywhere
+- **Identifier systems and values** (`philsysIdSystem`, `prcIdSystem`, `nhfrCodeSystem`, etc.) grouped at the top of the variables panel for quick submission management
+- **Conditional PUT requests** use `PUT /{Resource}?identifier={system}\|{value}` pattern per Track 1 specifications
+- **Bundle transaction** ready to submit all resources at once with proper internal `urn:uuid` references
+- **Standalone POST requests** include `// PUT: ResourceType/{id}` placeholders — fill in actual IDs after running dependency PUTs
+
+To use: import both files, set `{{baseUrl}}` if needed, then run the **Submit eReferral Bundle** request or step through individual requests.
+
 ## PARTICIPANT PACKETS
  - [Pre Connectathon Webinar - June 17, 2026](https://drive.google.com/file/d/17CwBt6FdD9OlzchGQBeoeEhR81B1MYDj/view?usp=drive_link)
  - [eReferral data elements and UHC Referral Form]( https://drive.google.com/drive/folders/13-2Mq-gSoYumIrA6D3EpLUwo-2_4nnVq?usp=sharing)

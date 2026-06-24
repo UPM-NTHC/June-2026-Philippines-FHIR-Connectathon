@@ -1,0 +1,12 @@
+{
+  "name": "PH eReferral Connectathon (Local)",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://cdr.pheref.fhirlab.net/fhir",
+      "type": "default"
+    }
+  ],
+  "_postman_exported_at": "2026-06-24T00:00:00+08:00",
+  "_postman_exported_using": "PH eReferral Connectathon"
+}
