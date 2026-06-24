@@ -48,7 +48,7 @@ To use: import both files, set `{{baseUrl}}` if needed, then run the **Submit eR
 ## PARTICIPANT PACKETS
  - [Pre Connectathon Webinar Recording - June 17, 2026](https://drive.google.com/file/d/17CwBt6FdD9OlzchGQBeoeEhR81B1MYDj/view?usp=drive_link)
  - [eReferral data elements and UHC Referral Form]( https://drive.google.com/drive/folders/13-2Mq-gSoYumIrA6D3EpLUwo-2_4nnVq?usp=sharing)
- - [SMART on FHIR]( https://drive.google.com/file/d/1vblKK6dxDOoQCEzOxoid87b0k_mZUh8t/view?usp=drive_link )
+ - [SMART on FHIR Recording]( https://drive.google.com/file/d/1vblKK6dxDOoQCEzOxoid87b0k_mZUh8t/view?usp=drive_link )
 
 
 ## EVENT OVERVIEW
