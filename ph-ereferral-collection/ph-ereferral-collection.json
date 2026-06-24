@@ -1,0 +1,1089 @@
+{
+  "info": {
+    "_postman_id": "d673a26a-12b2-4cdd-89d6-f14dcc08486e",
+    "name": "PH eReferral Connectathon",
+    "description": "Postman collection for the PH eReferral Implementation Guide (v0.1.0) based on the PH eReferral Data Dictionary. All values are parameterized using Postman variables mapped to REF element IDs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32726239",
+    "_collection_link": "https://go.postman.co/collection/32726239-d673a26a-12b2-4cdd-89d6-f14dcc08486e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Submit eReferral Bundle (Transaction)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Bundle\",\n  \"language\": \"en\",\n  \"type\": \"transaction\",\n  \"timestamp\": \"{{bundleTimestamp}}\",\n  \"entry\": [{\n    \"fullUrl\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\",\n    \"resource\": {\n      \"resourceType\": \"Patient\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-patient\"]\n      },\n      \"language\": \"en\",\n      \"identifier\": [{\n        \"system\": \"{{philhealthIdSystem}}\",\n        \"value\": \"{{REF-26_philhealthId}}\"\n      },\n      {\n        \"system\": \"{{philsysIdSystem}}\",\n        \"value\": \"{{REF-25_philsysId}}\"\n      }],\n      \"active\": true,\n      \"name\": [{\n        \"use\": \"official\",\n        \"family\": \"{{REF-21_patientFamily}}\",\n        \"given\": [\"{{REF-21_patientGiven1}}\", \"{{REF-21_patientGiven2}}\"]\n      }],\n      \"telecom\": [{\n        \"system\": \"phone\",\n        \"value\": \"{{REF-28_patientPhone}}\",\n        \"use\": \"mobile\"\n      }],\n      \"gender\": \"{{REF-22_patientGender}}\",\n      \"birthDate\": \"{{REF-23_patientBirthDate}}\",\n      \"address\": [{\n        \"extension\": [{\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/region\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-27_patientRegionCode}}\",\n            \"display\": \"{{REF-27_patientRegionDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/province\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-27_patientProvinceCode}}\",\n            \"display\": \"{{REF-27_patientProvinceDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-27_patientCityCode}}\",\n            \"display\": \"{{REF-27_patientCityDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-27_patientBarangayCode}}\",\n            \"display\": \"{{REF-27_patientBarangayDisplay}}\"\n          }\n        }],\n        \"use\": \"home\",\n        \"line\": [\"{{REF-27_patientAddressLine}}\"],\n        \"postalCode\": \"{{REF-27_patientPostalCode}}\",\n        \"country\": \"PH\"\n      }],\n      \"contact\": [{\n        \"relationship\": [{\n          \"coding\": [{\n            \"system\": \"http://terminology.hl7.org/CodeSystem/v3-RoleCode\",\n            \"code\": \"HUSB\",\n            \"display\": \"Husband\"\n          }]\n        }],\n        \"name\": {\n          \"use\": \"official\",\n          \"family\": \"{{REF-29_nextOfKinFamily}}\",\n          \"given\": [\"{{REF-29_nextOfKinGiven}}\"]\n        }\n      }]\n    },\n    \"request\": {\n      \"method\": \"PUT\",\n      \"url\": \"Patient?identifier={{philsysIdSystem}}|{{REF-25_philsysId}}\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:309021d0-7abe-4b54-b2e9-23a056851d0e\",\n    \"resource\": {\n      \"resourceType\": \"Practitioner\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner\"]\n      },\n      \"language\": \"en\",\n      \"identifier\": [{\n        \"system\": \"{{prcIdSystem}}\",\n        \"value\": \"{{sendingPractitionerPrcId}}\"\n      }],\n      \"name\": [{\n        \"use\": \"official\",\n        \"family\": \"{{REF-1_sendingPractitionerFamily}}\",\n        \"given\": [\"{{REF-1_sendingPractitionerGiven}}\"],\n        \"prefix\": [\"{{REF-1_sendingPractitionerPrefix}}\"]\n      }]\n    },\n    \"request\": {\n      \"method\": \"PUT\",\n      \"url\": \"Practitioner?identifier={{prcIdSystem}}|{{sendingPractitionerPrcId}}\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:4f8b2c1d-9a3e-4b7c-8d1f-2e6a5b3c0d9e\",\n    \"resource\": {\n      \"resourceType\": \"Practitioner\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner\"]\n      },\n      \"language\": \"en\",\n      \"identifier\": [{\n        \"system\": \"{{prcIdSystem}}\",\n        \"value\": \"{{receivingPractitionerPrcId}}\"\n      }],\n      \"name\": [{\n        \"use\": \"official\",\n        \"family\": \"{{REF-9_receivingPractitionerFamily}}\",\n        \"given\": [\"{{REF-9_receivingPractitionerGiven}}\"],\n        \"prefix\": [\"{{REF-9_receivingPractitionerPrefix}}\"]\n      }]\n    },\n    \"request\": {\n      \"method\": \"PUT\",\n      \"url\": \"Practitioner?identifier={{prcIdSystem}}|{{receivingPractitionerPrcId}}\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:a038f451-6557-4b01-b05c-aa4ff967545b\",\n    \"resource\": {\n      \"resourceType\": \"Organization\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization\"]\n      },\n      \"language\": \"en\",\n      \"identifier\": [{\n        \"system\": \"{{nhfrCodeSystem}}\",\n        \"value\": \"{{REF-6_initiatingFacilityNHFR}}\"\n      },\n      {\n        \"system\": \"{{hcpnCodeSystem}}\",\n        \"value\": \"{{REF-12_hcpnName}}\"\n      }],\n      \"name\": \"{{REF-5_initiatingFacilityName}}\",\n      \"telecom\": [{\n        \"system\": \"phone\",\n        \"value\": \"{{REF-8_initiatingFacilityPhone}}\",\n        \"use\": \"work\"\n      }],\n      \"address\": [{\n        \"extension\": [{\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/region\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityRegionCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityRegionDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/province\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityProvinceCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityProvinceDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityCityCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityCityDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityBarangayCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityBarangayDisplay}}\"\n          }\n        }],\n        \"use\": \"work\",\n        \"line\": [\"{{REF-7_initiatingFacilityAddressLine}}\"],\n        \"postalCode\": \"{{REF-7_initiatingFacilityPostalCode}}\",\n        \"country\": \"PH\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"PUT\",\n      \"url\": \"Organization?identifier={{nhfrCodeSystem}}|{{REF-6_initiatingFacilityNHFR}}\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:8c97c63e-4dbf-45d5-894e-f671e385a126\",\n    \"resource\": {\n      \"resourceType\": \"Organization\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization\"]\n      },\n      \"language\": \"en\",\n      \"identifier\": [{\n        \"system\": \"{{nhfrCodeSystem}}\",\n        \"value\": \"{{REF-11_receivingFacilityNHFR}}\"\n      },\n      {\n        \"system\": \"{{hcpnCodeSystem}}\",\n        \"value\": \"{{REF-12_hcpnName}}\"\n      }],\n      \"name\": \"{{REF-10_receivingFacilityName}}\",\n      \"telecom\": [{\n        \"system\": \"phone\",\n        \"value\": \"(043) 756-3124\",\n        \"use\": \"work\"\n      }],\n      \"address\": [{\n        \"extension\": [{\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/region\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityRegionCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityRegionDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/province\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityProvinceCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityProvinceDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityCityCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityCityDisplay}}\"\n          }\n        },\n        {\n          \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay\",\n          \"valueCoding\": {\n            \"system\": \"https://psa.gov.ph/classification/psgc\",\n            \"code\": \"{{REF-7_initiatingFacilityBarangayCode}}\",\n            \"display\": \"{{REF-7_initiatingFacilityBarangayDisplay}}\"\n          }\n        }],\n        \"use\": \"work\",\n        \"line\": [\"National Highway\"],\n        \"postalCode\": \"{{REF-7_initiatingFacilityPostalCode}}\",\n        \"country\": \"PH\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"PUT\",\n      \"url\": \"Organization?identifier={{nhfrCodeSystem}}|{{REF-11_receivingFacilityNHFR}}\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:06924c91-7363-40ab-932b-6f64d0a102b9\",\n    \"resource\": {\n      \"resourceType\": \"PractitionerRole\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-practitioner-role\"]\n      },\n      \"language\": \"en\",\n      \"identifier\": [{\n        \"system\": \"{{prcIdSystem}}\",\n        \"value\": \"{{sendingPractitionerPrcId}}\"\n      }],\n      \"practitioner\": {\n        \"reference\": \"urn:uuid:309021d0-7abe-4b54-b2e9-23a056851d0e\"\n      },\n      \"organization\": {\n        \"reference\": \"urn:uuid:a038f451-6557-4b01-b05c-aa4ff967545b\"\n      },\n      \"code\": [{\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"{{REF-2_practitionerRoleCode}}\",\n          \"display\": \"{{REF-2_practitionerRoleDisplay}}\"\n        }]\n      }]\n    },\n    \"request\": {\n      \"method\": \"PUT\",\n      \"url\": \"PractitionerRole?identifier={{prcIdSystem}}|{{sendingPractitionerPrcId}}\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:6ce0a17b-7fb3-4075-a524-3afd390731de\",\n    \"resource\": {\n      \"resourceType\": \"PractitionerRole\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-practitioner-role\"]\n      },\n      \"language\": \"en\",\n      \"identifier\": [{\n        \"system\": \"{{prcIdSystem}}\",\n        \"value\": \"{{receivingPractitionerPrcId}}\"\n      }],\n      \"practitioner\": {\n        \"reference\": \"urn:uuid:4f8b2c1d-9a3e-4b7c-8d1f-2e6a5b3c0d9e\"\n      },\n      \"organization\": {\n        \"reference\": \"urn:uuid:8c97c63e-4dbf-45d5-894e-f671e385a126\"\n      },\n      \"code\": [{\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"{{REF-2_practitionerRoleCode}}\",\n          \"display\": \"{{REF-2_practitionerRoleDisplay}}\"\n        }]\n      }]\n    },\n    \"request\": {\n      \"method\": \"PUT\",\n      \"url\": \"PractitionerRole?identifier={{prcIdSystem}}|{{receivingPractitionerPrcId}}\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\",\n    \"resource\": {\n      \"resourceType\": \"Encounter\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-encounter\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"{{encounterStatus}}\",\n      \"class\": {\n        \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\",\n        \"code\": \"{{encounterClassCode}}\",\n        \"display\": \"ambulatory\"\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      }\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Encounter\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:99a80644-e928-4fbd-b07f-8ac5fb5675b1\",\n    \"resource\": {\n      \"resourceType\": \"Condition\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-condition\"]\n      },\n      \"language\": \"en\",\n      \"clinicalStatus\": {\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\",\n          \"code\": \"active\"\n        }]\n      },\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\",\n          \"code\": \"problem-list-item\",\n          \"display\": \"Problem List Item\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"{{REF-31_chiefComplaintCode}}\",\n          \"display\": \"{{REF-31_chiefComplaintDisplay}}\"\n        }],\n        \"text\": \"{{REF-31_chiefComplaintText}}\"\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"note\": [{\n        \"text\": \"{{REF-32_clinicalHistory}}\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Condition\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:7166d722-982f-4d35-841d-c63d4d5ec772\",\n    \"resource\": {\n      \"resourceType\": \"Condition\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-condition\"]\n      },\n      \"language\": \"en\",\n      \"clinicalStatus\": {\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\",\n          \"code\": \"active\"\n        }]\n      },\n      \"verificationStatus\": {\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/condition-ver-status\",\n          \"code\": \"provisional\",\n          \"display\": \"Provisional\"\n        }]\n      },\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\",\n          \"code\": \"encounter-diagnosis\",\n          \"display\": \"Encounter Diagnosis\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"{{REF-41_workingImpressionCode}}\",\n          \"display\": \"{{REF-41_workingImpressionDisplay}}\"\n        }],\n        \"text\": \"{{REF-41_workingImpressionText}}\"\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"note\": [{\n        \"text\": \"G2P1, 32 weeks AOG. EDD: Aug 20 2026. LMP: Nov 13 2025.\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Condition\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:27ea0c24-b2e3-4f4e-ba6f-d40b4653232e\",\n    \"resource\": {\n      \"resourceType\": \"Observation\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"final\",\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n          \"code\": \"vital-signs\",\n          \"display\": \"Vital Signs\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://loinc.org\",\n          \"code\": \"85354-9\",\n          \"display\": \"Blood pressure panel with all children optional\"\n        },\n        {\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"75367002\",\n          \"display\": \"Blood pressure\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n      \"component\": [{\n        \"code\": {\n          \"coding\": [{\n            \"system\": \"http://loinc.org\",\n            \"code\": \"8480-6\",\n            \"display\": \"Systolic blood pressure\"\n          },\n          {\n            \"system\": \"http://snomed.info/sct\",\n            \"code\": \"271649006\",\n            \"display\": \"Systolic blood pressure\"\n          }]\n        },\n        \"valueQuantity\": {\n          \"value\": {{REF-33_bpSystolic}},\n          \"unit\": \"mmHg\",\n          \"system\": \"http://unitsofmeasure.org\",\n          \"code\": \"mm[Hg]\"\n        }\n      },\n      {\n        \"code\": {\n          \"coding\": [{\n            \"system\": \"http://loinc.org\",\n            \"code\": \"8462-4\",\n            \"display\": \"Diastolic blood pressure\"\n          },\n          {\n            \"system\": \"http://snomed.info/sct\",\n            \"code\": \"271650006\",\n            \"display\": \"Diastolic blood pressure\"\n          }]\n        },\n        \"valueQuantity\": {\n          \"value\": {{REF-33_bpDiastolic}},\n          \"unit\": \"mmHg\",\n          \"system\": \"http://unitsofmeasure.org\",\n          \"code\": \"mm[Hg]\"\n        }\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Observation\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:75b09e76-3c93-4a69-af02-71a6d9713558\",\n    \"resource\": {\n      \"resourceType\": \"Observation\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"final\",\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n          \"code\": \"vital-signs\",\n          \"display\": \"Vital Signs\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://loinc.org\",\n          \"code\": \"8867-4\",\n          \"display\": \"Heart rate\"\n        },\n        {\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"78564009\",\n          \"display\": \"Pulse rate\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n      \"valueQuantity\": {\n        \"value\": {{REF-34_heartRate}},\n        \"unit\": \"beats/minute\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"/min\"\n      }\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Observation\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:0bd2221b-dac4-44ec-811b-a10683f301c9\",\n    \"resource\": {\n      \"resourceType\": \"Observation\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"final\",\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n          \"code\": \"vital-signs\",\n          \"display\": \"Vital Signs\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://loinc.org\",\n          \"code\": \"9279-1\",\n          \"display\": \"Respiratory rate\"\n        },\n        {\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"86290005\",\n          \"display\": \"Respiratory rate\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n      \"valueQuantity\": {\n        \"value\": {{REF-35_respiratoryRate}},\n        \"unit\": \"breaths/minute\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"/min\"\n      }\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Observation\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:080d6fb5-aed8-4dc0-b7dd-51d38f903819\",\n    \"resource\": {\n      \"resourceType\": \"Observation\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"final\",\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n          \"code\": \"vital-signs\",\n          \"display\": \"Vital Signs\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://loinc.org\",\n          \"code\": \"2708-6\",\n          \"display\": \"Oxygen saturation in Arterial blood\"\n        },\n        {\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"103228002\",\n          \"display\": \"Hemoglobin saturation with oxygen\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n      \"valueQuantity\": {\n        \"value\": {{REF-36_oxygenSaturation}},\n        \"unit\": \"%\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"%\"\n      }\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Observation\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:3f56fb3e-b0ea-4ab0-a7a5-2adac78d5c9b\",\n    \"resource\": {\n      \"resourceType\": \"Observation\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"final\",\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n          \"code\": \"vital-signs\",\n          \"display\": \"Vital Signs\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://loinc.org\",\n          \"code\": \"8310-5\",\n          \"display\": \"Body temperature\"\n        },\n        {\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"386725007\",\n          \"display\": \"Body temperature\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n      \"valueQuantity\": {\n        \"value\": {{REF-37_temperature}},\n        \"unit\": \"Celsius\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"Cel\"\n      }\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Observation\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:d70026e6-2a52-4f4e-99d3-b73dbf52cfc3\",\n    \"resource\": {\n      \"resourceType\": \"Observation\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"final\",\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n          \"code\": \"vital-signs\",\n          \"display\": \"Vital Signs\"\n        }]\n      }],\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://loinc.org\",\n          \"code\": \"29463-7\",\n          \"display\": \"Body weight\"\n        },\n        {\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"27113001\",\n          \"display\": \"Body weight\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n      \"valueQuantity\": {\n        \"value\": {{REF-38_weight}},\n        \"unit\": \"kg\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"kg\"\n      }\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Observation\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:873a6d29-a842-43e7-a267-c3df56193f7f\",\n    \"resource\": {\n      \"resourceType\": \"Procedure\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-procedure\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"completed\",\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"416608005\",\n          \"display\": \"Drug therapy\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"note\": [{\n        \"text\": \"{{REF-39_treatmentGiven}}\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Procedure\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:1e517f0b-6324-47f1-a626-8ddb5b617c59\",\n    \"resource\": {\n      \"resourceType\": \"DiagnosticReport\",\n      \"language\": \"en\",\n      \"status\": \"final\",\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://loinc.org\",\n          \"code\": \"24356-8\",\n          \"display\": \"Urinalysis complete panel - Urine\"\n        }]\n      },\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"conclusion\": \"{{REF-40_labConclusion}}\",\n      \"presentedForm\": [{\n        \"title\": \"{{REF-40_labTitle}}\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"DiagnosticReport\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:2da5e918-42d1-4d2c-b5dd-570b0b172759\",\n    \"resource\": {\n      \"resourceType\": \"ServiceRequest\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-service-request\"]\n      },\n      \"language\": \"en\",\n      \"requisition\": {\n        \"system\": \"{{requisitionSystem}}\",\n        \"value\": \"{{serviceRequestRequisition}}\"\n      },\n      \"status\": \"active\",\n      \"intent\": \"order\",\n      \"category\": [{\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"{{REF-14_referralCategoryCode}}\",\n          \"display\": \"{{REF-14_referralCategoryDisplay}}\"\n        }],\n        \"text\": \"{{REF-14_referralCategoryText}}\"\n      }],\n      \"subject\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"encounter\": {\n        \"reference\": \"urn:uuid:a86d5b74-f8b5-42c2-b27a-5faff8d84cce\"\n      },\n      \"occurrenceDateTime\": \"{{REF-13_dateOfReferral}}\",\n      \"authoredOn\": \"{{REF-13_dateOfReferral}}\",\n      \"requester\": {\n        \"reference\": \"urn:uuid:06924c91-7363-40ab-932b-6f64d0a102b9\"\n      },\n      \"performer\": [{\n        \"reference\": \"urn:uuid:6ce0a17b-7fb3-4075-a524-3afd390731de\"\n      }],\n      \"reasonCode\": [{\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"{{REF-16_reasonForReferralCode}}\",\n          \"display\": \"{{REF-16_reasonForReferralDisplay}}\"\n        }],\n        \"text\": \"{{REF-16_reasonForReferralText}}\"\n      }],\n      \"reasonReference\": [{\n        \"reference\": \"urn:uuid:7166d722-982f-4d35-841d-c63d4d5ec772\"\n      }],\n      \"note\": [{\n        \"text\": \"{{serviceRequestNote}}\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"ServiceRequest\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:05fe9d1b-3653-4a4e-8aa6-9dbb51acb4d4\",\n    \"resource\": {\n      \"resourceType\": \"Task\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-task\"]\n      },\n      \"language\": \"en\",\n      \"status\": \"requested\",\n      \"intent\": \"order\",\n      \"code\": {\n        \"coding\": [{\n          \"system\": \"http://snomed.info/sct\",\n          \"code\": \"3457005\",\n          \"display\": \"Patient referral\"\n        }],\n        \"text\": \"eReferral for severe pre-eclampsia management\"\n      },\n      \"focus\": {\n        \"reference\": \"urn:uuid:2da5e918-42d1-4d2c-b5dd-570b0b172759\"\n      },\n      \"for\": {\n        \"reference\": \"urn:uuid:d7e33c3b-e90b-464e-a5eb-a92f60c71542\"\n      },\n      \"authoredOn\": \"{{REF-15_timeCalled}}\",\n      \"lastModified\": \"{{REF-15_timeCalled}}\",\n      \"requester\": {\n        \"reference\": \"urn:uuid:06924c91-7363-40ab-932b-6f64d0a102b9\"\n      },\n      \"owner\": {\n        \"reference\": \"urn:uuid:6ce0a17b-7fb3-4075-a524-3afd390731de\"\n      },\n      \"note\": [{\n        \"text\": \"{{taskNote}}\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Task\"\n    }\n  },\n  {\n    \"fullUrl\": \"urn:uuid:6760bfb4-3596-4568-b8ff-b487736a70f5\",\n    \"resource\": {\n      \"resourceType\": \"Provenance\",\n      \"meta\": {\n        \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-provenance\"]\n      },\n      \"language\": \"en\",\n      \"target\": [{\n        \"reference\": \"urn:uuid:2da5e918-42d1-4d2c-b5dd-570b0b172759\"\n      }],\n      \"recorded\": \"{{REF-3_provenanceRecorded}}\",\n      \"activity\": {\n        \"coding\": [{\n          \"system\": \"http://terminology.hl7.org/CodeSystem/v3-DataOperation\",\n          \"code\": \"CREATE\",\n          \"display\": \"create\"\n        }]\n      },\n      \"agent\": [{\n        \"type\": {\n          \"coding\": [{\n            \"system\": \"http://terminology.hl7.org/CodeSystem/provenance-participant-type\",\n            \"code\": \"author\",\n            \"display\": \"Author\"\n          }]\n        },\n        \"who\": {\n          \"reference\": \"urn:uuid:06924c91-7363-40ab-932b-6f64d0a102b9\"\n        },\n        \"onBehalfOf\": {\n          \"reference\": \"urn:uuid:a038f451-6557-4b01-b05c-aa4ff967545b\"\n        }\n      }],\n      \"signature\": [{\n        \"type\": [{\n          \"system\": \"urn:iso-astm:E1762-95:2013\",\n          \"code\": \"1.2.840.10065.1.12.1.5\",\n          \"display\": \"Verification Signature\"\n        }],\n        \"when\": \"{{REF-3_provenanceRecorded}}\",\n        \"who\": {\n          \"reference\": \"urn:uuid:06924c91-7363-40ab-932b-6f64d0a102b9\"\n        },\n        \"data\": \"{{REF-4_provenanceSignatureData}}\"\n      }]\n    },\n    \"request\": {\n      \"method\": \"POST\",\n      \"url\": \"Provenance\"\n    }\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}",
+          "host": [
+            "{{baseUrl}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Patient",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Patient\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-patient\"]\n  },\n  \"language\": \"en\",\n  \"identifier\": [{\n    \"system\": \"{{philhealthIdSystem}}\",\n    \"value\": \"{{REF-26_philhealthId}}\"\n  },\n  {\n    \"system\": \"{{philsysIdSystem}}\",\n    \"value\": \"{{REF-25_philsysId}}\"\n  }],\n  \"active\": true,\n  \"name\": [{\n    \"use\": \"official\",\n    \"family\": \"{{REF-21_patientFamily}}\",\n    \"given\": [\"{{REF-21_patientGiven1}}\", \"{{REF-21_patientGiven2}}\"]\n  }],\n  \"telecom\": [{\n    \"system\": \"phone\",\n    \"value\": \"{{REF-28_patientPhone}}\",\n    \"use\": \"mobile\"\n  }],\n  \"gender\": \"{{REF-22_patientGender}}\",\n  \"birthDate\": \"{{REF-23_patientBirthDate}}\",\n  \"address\": [{\n    \"extension\": [{\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/region\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-27_patientRegionCode}}\",\n        \"display\": \"{{REF-27_patientRegionDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/province\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-27_patientProvinceCode}}\",\n        \"display\": \"{{REF-27_patientProvinceDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-27_patientCityCode}}\",\n        \"display\": \"{{REF-27_patientCityDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-27_patientBarangayCode}}\",\n        \"display\": \"{{REF-27_patientBarangayDisplay}}\"\n      }\n    }],\n    \"use\": \"home\",\n    \"line\": [\"{{REF-27_patientAddressLine}}\"],\n    \"postalCode\": \"{{REF-27_patientPostalCode}}\",\n    \"country\": \"PH\"\n  }],\n  \"contact\": [{\n    \"relationship\": [{\n      \"coding\": [{\n        \"system\": \"http://terminology.hl7.org/CodeSystem/v3-RoleCode\",\n        \"code\": \"HUSB\",\n        \"display\": \"Husband\"\n      }]\n    }],\n    \"name\": {\n      \"use\": \"official\",\n      \"family\": \"{{REF-29_nextOfKinFamily}}\",\n      \"given\": [\"{{REF-29_nextOfKinGiven}}\"]\n    }\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Patient?identifier={{philsysIdSystem}}|{{REF-25_philsysId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Patient"
+          ],
+          "query": [
+            {
+              "key": "identifier",
+              "value": "{{philsysIdSystem}}|{{REF-25_philsysId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Practitioner (Sending)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Practitioner\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner\"]\n  },\n  \"language\": \"en\",\n  \"identifier\": [{\n    \"system\": \"{{prcIdSystem}}\",\n    \"value\": \"{{sendingPractitionerPrcId}}\"\n  }],\n  \"name\": [{\n    \"use\": \"official\",\n    \"family\": \"{{REF-1_sendingPractitionerFamily}}\",\n    \"given\": [\"{{REF-1_sendingPractitionerGiven}}\"],\n    \"prefix\": [\"{{REF-1_sendingPractitionerPrefix}}\"]\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Practitioner?identifier={{prcIdSystem}}|{{sendingPractitionerPrcId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Practitioner"
+          ],
+          "query": [
+            {
+              "key": "identifier",
+              "value": "{{prcIdSystem}}|{{sendingPractitionerPrcId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Practitioner (Receiving)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Practitioner\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner\"]\n  },\n  \"language\": \"en\",\n  \"identifier\": [{\n    \"system\": \"{{prcIdSystem}}\",\n    \"value\": \"{{receivingPractitionerPrcId}}\"\n  }],\n  \"name\": [{\n    \"use\": \"official\",\n    \"family\": \"{{REF-9_receivingPractitionerFamily}}\",\n    \"given\": [\"{{REF-9_receivingPractitionerGiven}}\"],\n    \"prefix\": [\"{{REF-9_receivingPractitionerPrefix}}\"]\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Practitioner?identifier={{prcIdSystem}}|{{receivingPractitionerPrcId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Practitioner"
+          ],
+          "query": [
+            {
+              "key": "identifier",
+              "value": "{{prcIdSystem}}|{{receivingPractitionerPrcId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Organization (Sending)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Organization\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization\"]\n  },\n  \"language\": \"en\",\n  \"identifier\": [{\n    \"system\": \"{{nhfrCodeSystem}}\",\n    \"value\": \"{{REF-6_initiatingFacilityNHFR}}\"\n  },\n  {\n    \"system\": \"{{hcpnCodeSystem}}\",\n    \"value\": \"{{REF-12_hcpnName}}\"\n  }],\n  \"name\": \"{{REF-5_initiatingFacilityName}}\",\n  \"telecom\": [{\n    \"system\": \"phone\",\n    \"value\": \"{{REF-8_initiatingFacilityPhone}}\",\n    \"use\": \"work\"\n  }],\n  \"address\": [{\n    \"extension\": [{\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/region\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityRegionCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityRegionDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/province\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityProvinceCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityProvinceDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityCityCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityCityDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityBarangayCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityBarangayDisplay}}\"\n      }\n    }],\n    \"use\": \"work\",\n    \"line\": [\"{{REF-7_initiatingFacilityAddressLine}}\"],\n    \"postalCode\": \"{{REF-7_initiatingFacilityPostalCode}}\",\n    \"country\": \"PH\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Organization?identifier={{nhfrCodeSystem}}|{{REF-6_initiatingFacilityNHFR}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Organization"
+          ],
+          "query": [
+            {
+              "key": "identifier",
+              "value": "{{nhfrCodeSystem}}|{{REF-6_initiatingFacilityNHFR}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Organization (Receiving)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Organization\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization\"]\n  },\n  \"language\": \"en\",\n  \"identifier\": [{\n    \"system\": \"{{nhfrCodeSystem}}\",\n    \"value\": \"{{REF-11_receivingFacilityNHFR}}\"\n  },\n  {\n    \"system\": \"{{hcpnCodeSystem}}\",\n    \"value\": \"{{REF-12_hcpnName}}\"\n  }],\n  \"name\": \"{{REF-10_receivingFacilityName}}\",\n  \"telecom\": [{\n    \"system\": \"phone\",\n    \"value\": \"(043) 756-3124\",\n    \"use\": \"work\"\n  }],\n  \"address\": [{\n    \"extension\": [{\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/region\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityRegionCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityRegionDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/province\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityProvinceCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityProvinceDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityCityCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityCityDisplay}}\"\n      }\n    },\n    {\n      \"url\": \"https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay\",\n      \"valueCoding\": {\n        \"system\": \"https://psa.gov.ph/classification/psgc\",\n        \"code\": \"{{REF-7_initiatingFacilityBarangayCode}}\",\n        \"display\": \"{{REF-7_initiatingFacilityBarangayDisplay}}\"\n      }\n    }],\n    \"use\": \"work\",\n    \"line\": [\"National Highway\"],\n    \"postalCode\": \"{{REF-7_initiatingFacilityPostalCode}}\",\n    \"country\": \"PH\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Organization?identifier={{nhfrCodeSystem}}|{{REF-11_receivingFacilityNHFR}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Organization"
+          ],
+          "query": [
+            {
+              "key": "identifier",
+              "value": "{{nhfrCodeSystem}}|{{REF-11_receivingFacilityNHFR}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update PractitionerRole (Sending)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"PractitionerRole\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-practitioner-role\"]\n  },\n  \"language\": \"en\",\n  \"identifier\": [{\n    \"system\": \"{{prcIdSystem}}\",\n    \"value\": \"{{sendingPractitionerPrcId}}\"\n  }],\n  \"practitioner\": {\n    \"reference\": \"// PUT: Practitioner/{id} (Sending)\"\n  },\n  \"organization\": {\n    \"reference\": \"// PUT: Organization/{id} (Sending)\"\n  },\n  \"code\": [{\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"{{REF-2_practitionerRoleCode}}\",\n      \"display\": \"{{REF-2_practitionerRoleDisplay}}\"\n    }]\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/PractitionerRole?identifier={{prcIdSystem}}|{{sendingPractitionerPrcId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "PractitionerRole"
+          ],
+          "query": [
+            {
+              "key": "identifier",
+              "value": "{{prcIdSystem}}|{{sendingPractitionerPrcId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update PractitionerRole (Receiving)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"PractitionerRole\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-practitioner-role\"]\n  },\n  \"language\": \"en\",\n  \"identifier\": [{\n    \"system\": \"{{prcIdSystem}}\",\n    \"value\": \"{{receivingPractitionerPrcId}}\"\n  }],\n  \"practitioner\": {\n    \"reference\": \"// PUT: Practitioner/{id} (Receiving)\"\n  },\n  \"organization\": {\n    \"reference\": \"// PUT: Organization/{id} (Receiving)\"\n  },\n  \"code\": [{\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"{{REF-2_practitionerRoleCode}}\",\n      \"display\": \"{{REF-2_practitionerRoleDisplay}}\"\n    }]\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/PractitionerRole?identifier={{prcIdSystem}}|{{receivingPractitionerPrcId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "PractitionerRole"
+          ],
+          "query": [
+            {
+              "key": "identifier",
+              "value": "{{prcIdSystem}}|{{receivingPractitionerPrcId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create ServiceRequest",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"ServiceRequest\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-service-request\"]\n  },\n  \"language\": \"en\",\n  \"requisition\": {\n    \"system\": \"{{requisitionSystem}}\",\n    \"value\": \"{{serviceRequestRequisition}}\"\n  },\n  \"status\": \"active\",\n  \"intent\": \"order\",\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"{{REF-14_referralCategoryCode}}\",\n      \"display\": \"{{REF-14_referralCategoryDisplay}}\"\n    }],\n    \"text\": \"{{REF-14_referralCategoryText}}\"\n  }],\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"occurrenceDateTime\": \"{{REF-13_dateOfReferral}}\",\n  \"authoredOn\": \"{{REF-13_dateOfReferral}}\",\n  \"requester\": {\n    \"reference\": \"// PUT: PractitionerRole/{id} (Sending)\"\n  },\n  \"performer\": [{\n    \"reference\": \"// PUT: PractitionerRole/{id} (Receiving)\"\n  }],\n  \"reasonCode\": [{\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"{{REF-16_reasonForReferralCode}}\",\n      \"display\": \"{{REF-16_reasonForReferralDisplay}}\"\n    }],\n    \"text\": \"{{REF-16_reasonForReferralText}}\"\n  }],\n  \"reasonReference\": [{\n    \"reference\": \"// PUT: Condition/{id} (Working Impression)\"\n  }],\n  \"note\": [{\n    \"text\": \"{{serviceRequestNote}}\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/ServiceRequest",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "ServiceRequest"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Encounter",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Encounter\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-encounter\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"{{encounterStatus}}\",\n  \"class\": {\n    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\",\n    \"code\": \"{{encounterClassCode}}\",\n    \"display\": \"ambulatory\"\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Encounter",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Encounter"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Condition (Chief Complaint)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Condition\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-condition\"]\n  },\n  \"language\": \"en\",\n  \"clinicalStatus\": {\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\",\n      \"code\": \"active\"\n    }]\n  },\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\",\n      \"code\": \"problem-list-item\",\n      \"display\": \"Problem List Item\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"{{REF-31_chiefComplaintCode}}\",\n      \"display\": \"{{REF-31_chiefComplaintDisplay}}\"\n    }],\n    \"text\": \"{{REF-31_chiefComplaintText}}\"\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"note\": [{\n    \"text\": \"{{REF-32_clinicalHistory}}\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Condition",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Condition"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Condition (Working Impression)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Condition\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-condition\"]\n  },\n  \"language\": \"en\",\n  \"clinicalStatus\": {\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/condition-clinical\",\n      \"code\": \"active\"\n    }]\n  },\n  \"verificationStatus\": {\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/condition-ver-status\",\n      \"code\": \"provisional\",\n      \"display\": \"Provisional\"\n    }]\n  },\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/condition-category\",\n      \"code\": \"encounter-diagnosis\",\n      \"display\": \"Encounter Diagnosis\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"{{REF-41_workingImpressionCode}}\",\n      \"display\": \"{{REF-41_workingImpressionDisplay}}\"\n    }],\n    \"text\": \"{{REF-41_workingImpressionText}}\"\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"note\": [{\n    \"text\": \"G2P1, 32 weeks AOG. EDD: Aug 20 2026. LMP: Nov 13 2025.\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Condition",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Condition"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Observation (Blood Pressure)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"final\",\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n      \"code\": \"vital-signs\",\n      \"display\": \"Vital Signs\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://loinc.org\",\n      \"code\": \"85354-9\",\n      \"display\": \"Blood pressure panel with all children optional\"\n    },\n    {\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"75367002\",\n      \"display\": \"Blood pressure\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n  \"component\": [{\n    \"code\": {\n      \"coding\": [{\n        \"system\": \"http://loinc.org\",\n        \"code\": \"8480-6\",\n        \"display\": \"Systolic blood pressure\"\n      },\n      {\n        \"system\": \"http://snomed.info/sct\",\n        \"code\": \"271649006\",\n        \"display\": \"Systolic blood pressure\"\n      }]\n    },\n    \"valueQuantity\": {\n      \"value\": {{REF-33_bpSystolic}},\n      \"unit\": \"mmHg\",\n      \"system\": \"http://unitsofmeasure.org\",\n      \"code\": \"mm[Hg]\"\n    }\n  },\n  {\n    \"code\": {\n      \"coding\": [{\n        \"system\": \"http://loinc.org\",\n        \"code\": \"8462-4\",\n        \"display\": \"Diastolic blood pressure\"\n      },\n      {\n        \"system\": \"http://snomed.info/sct\",\n        \"code\": \"271650006\",\n        \"display\": \"Diastolic blood pressure\"\n      }]\n    },\n    \"valueQuantity\": {\n      \"value\": {{REF-33_bpDiastolic}},\n      \"unit\": \"mmHg\",\n      \"system\": \"http://unitsofmeasure.org\",\n      \"code\": \"mm[Hg]\"\n    }\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Observation",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Observation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Observation (Heart Rate)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"final\",\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n      \"code\": \"vital-signs\",\n      \"display\": \"Vital Signs\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://loinc.org\",\n      \"code\": \"8867-4\",\n      \"display\": \"Heart rate\"\n    },\n    {\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"78564009\",\n      \"display\": \"Pulse rate\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n  \"valueQuantity\": {\n    \"value\": {{REF-34_heartRate}},\n    \"unit\": \"beats/minute\",\n    \"system\": \"http://unitsofmeasure.org\",\n    \"code\": \"/min\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Observation",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Observation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Observation (Respiratory Rate)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"final\",\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n      \"code\": \"vital-signs\",\n      \"display\": \"Vital Signs\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://loinc.org\",\n      \"code\": \"9279-1\",\n      \"display\": \"Respiratory rate\"\n    },\n    {\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"86290005\",\n      \"display\": \"Respiratory rate\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n  \"valueQuantity\": {\n    \"value\": {{REF-35_respiratoryRate}},\n    \"unit\": \"breaths/minute\",\n    \"system\": \"http://unitsofmeasure.org\",\n    \"code\": \"/min\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Observation",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Observation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Observation (Oxygen Saturation)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"final\",\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n      \"code\": \"vital-signs\",\n      \"display\": \"Vital Signs\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://loinc.org\",\n      \"code\": \"2708-6\",\n      \"display\": \"Oxygen saturation in Arterial blood\"\n    },\n    {\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"103228002\",\n      \"display\": \"Hemoglobin saturation with oxygen\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n  \"valueQuantity\": {\n    \"value\": {{REF-36_oxygenSaturation}},\n    \"unit\": \"%\",\n    \"system\": \"http://unitsofmeasure.org\",\n    \"code\": \"%\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Observation",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Observation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Observation (Temperature)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"final\",\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n      \"code\": \"vital-signs\",\n      \"display\": \"Vital Signs\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://loinc.org\",\n      \"code\": \"8310-5\",\n      \"display\": \"Body temperature\"\n    },\n    {\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"386725007\",\n      \"display\": \"Body temperature\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n  \"valueQuantity\": {\n    \"value\": {{REF-37_temperature}},\n    \"unit\": \"Celsius\",\n    \"system\": \"http://unitsofmeasure.org\",\n    \"code\": \"Cel\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Observation",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Observation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Observation (Weight)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Observation\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-observation\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"final\",\n  \"category\": [{\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/observation-category\",\n      \"code\": \"vital-signs\",\n      \"display\": \"Vital Signs\"\n    }]\n  }],\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://loinc.org\",\n      \"code\": \"29463-7\",\n      \"display\": \"Body weight\"\n    },\n    {\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"27113001\",\n      \"display\": \"Body weight\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"effectiveDateTime\": \"{{observationsEffectiveDateTime}}\",\n  \"valueQuantity\": {\n    \"value\": {{REF-38_weight}},\n    \"unit\": \"kg\",\n    \"system\": \"http://unitsofmeasure.org\",\n    \"code\": \"kg\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Observation",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Observation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Procedure",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Procedure\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-procedure\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"completed\",\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"416608005\",\n      \"display\": \"Drug therapy\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"note\": [{\n    \"text\": \"{{REF-39_treatmentGiven}}\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Procedure",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Procedure"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create DiagnosticReport",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"DiagnosticReport\",\n  \"language\": \"en\",\n  \"status\": \"final\",\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://loinc.org\",\n      \"code\": \"24356-8\",\n      \"display\": \"Urinalysis complete panel - Urine\"\n    }]\n  },\n  \"subject\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"encounter\": {\n    \"reference\": \"// PUT: Encounter/{id}\"\n  },\n  \"conclusion\": \"{{REF-40_labConclusion}}\",\n  \"presentedForm\": [{\n    \"title\": \"{{REF-40_labTitle}}\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/DiagnosticReport",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "DiagnosticReport"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Task\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-task\"]\n  },\n  \"language\": \"en\",\n  \"status\": \"requested\",\n  \"intent\": \"order\",\n  \"code\": {\n    \"coding\": [{\n      \"system\": \"http://snomed.info/sct\",\n      \"code\": \"3457005\",\n      \"display\": \"Patient referral\"\n    }],\n    \"text\": \"eReferral for severe pre-eclampsia management\"\n  },\n  \"focus\": {\n    \"reference\": \"// PUT: ServiceRequest/{id}\"\n  },\n  \"for\": {\n    \"reference\": \"// PUT: Patient/{id}\"\n  },\n  \"authoredOn\": \"{{REF-15_timeCalled}}\",\n  \"lastModified\": \"{{REF-15_timeCalled}}\",\n  \"requester\": {\n    \"reference\": \"// PUT: PractitionerRole/{id} (Sending)\"\n  },\n  \"owner\": {\n    \"reference\": \"// PUT: PractitionerRole/{id} (Receiving)\"\n  },\n  \"note\": [{\n    \"text\": \"{{taskNote}}\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Task",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Provenance",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/fhir+json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resourceType\": \"Provenance\",\n  \"meta\": {\n    \"profile\": [\"https://fhir.doh.gov.ph/pheref/StructureDefinition/ereferral-provenance\"]\n  },\n  \"language\": \"en\",\n  \"target\": [{\n    \"reference\": \"// PUT: ServiceRequest/{id}\"\n  }],\n  \"recorded\": \"{{REF-3_provenanceRecorded}}\",\n  \"activity\": {\n    \"coding\": [{\n      \"system\": \"http://terminology.hl7.org/CodeSystem/v3-DataOperation\",\n      \"code\": \"CREATE\",\n      \"display\": \"create\"\n    }]\n  },\n  \"agent\": [{\n    \"type\": {\n      \"coding\": [{\n        \"system\": \"http://terminology.hl7.org/CodeSystem/provenance-participant-type\",\n        \"code\": \"author\",\n        \"display\": \"Author\"\n      }]\n    },\n    \"who\": {\n      \"reference\": \"// PUT: PractitionerRole/{id} (Sending)\"\n    },\n    \"onBehalfOf\": {\n      \"reference\": \"// PUT: Organization/{id} (Sending)\"\n    }\n  }],\n  \"signature\": [{\n    \"type\": [{\n      \"system\": \"urn:iso-astm:E1762-95:2013\",\n      \"code\": \"1.2.840.10065.1.12.1.5\",\n      \"display\": \"Verification Signature\"\n    }],\n    \"when\": \"{{REF-3_provenanceRecorded}}\",\n    \"who\": {\n      \"reference\": \"// PUT: PractitionerRole/{id} (Sending)\"\n    },\n    \"data\": \"{{REF-4_provenanceSignatureData}}\"\n  }]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Provenance",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Provenance"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/fhir"
+    },
+    {
+      "key": "bundleTimestamp",
+      "value": "2026-06-18T08:30:00+08:00"
+    },
+    {
+      "key": "philsysIdSystem",
+      "value": "http://philsys.gov.ph/fhir/Identifier/philsys-id",
+      "type": "string"
+    },
+    {
+      "key": "REF-25_philsysId",
+      "value": "9970-1234-5678-9012"
+    },
+    {
+      "key": "philhealthIdSystem",
+      "value": "http://philhealth.gov.ph/fhir/Identifier/philhealth-id",
+      "type": "string"
+    },
+    {
+      "key": "REF-26_philhealthId",
+      "value": "99-12345678-9"
+    },
+    {
+      "key": "prcIdSystem",
+      "value": "https://prc.gov.ph/",
+      "type": "string"
+    },
+    {
+      "key": "sendingPractitionerPrcId",
+      "value": "1122334"
+    },
+    {
+      "key": "receivingPractitionerPrcId",
+      "value": "5566778"
+    },
+    {
+      "key": "nhfrCodeSystem",
+      "value": "https://fhir.doh.gov.ph/phcore/Identifier/doh-nhfr-code",
+      "type": "string"
+    },
+    {
+      "key": "REF-6_initiatingFacilityNHFR",
+      "value": "9901"
+    },
+    {
+      "key": "REF-11_receivingFacilityNHFR",
+      "value": "8802"
+    },
+    {
+      "key": "hcpnCodeSystem",
+      "value": "https://fhir.doh.gov.ph/phcore/Identifier/hcpn-code",
+      "type": "string"
+    },
+    {
+      "key": "REF-12_hcpnName",
+      "value": "Aklan HCPN"
+    },
+    {
+      "key": "requisitionSystem",
+      "value": "urn:oid:1.2.840.113619.21.1.2",
+      "type": "string"
+    },
+    {
+      "key": "serviceRequestRequisition",
+      "value": "REF-2026-999999"
+    },
+    {
+      "key": "REF-1_sendingPractitionerFamily",
+      "value": "Villanueva"
+    },
+    {
+      "key": "REF-1_sendingPractitionerGiven",
+      "value": "Maria"
+    },
+    {
+      "key": "REF-1_sendingPractitionerPrefix",
+      "value": "Dr."
+    },
+    {
+      "key": "REF-2_practitionerRoleCode",
+      "value": "158965000"
+    },
+    {
+      "key": "REF-2_practitionerRoleDisplay",
+      "value": "Medical practitioner"
+    },
+    {
+      "key": "REF-3_provenanceRecorded",
+      "value": "2026-06-18T08:30:00+08:00"
+    },
+    {
+      "key": "REF-4_provenanceSignatureData",
+      "value": "dGVzdHNpZ25hdHVyZWJhc2U2NA=="
+    },
+    {
+      "key": "REF-5_initiatingFacilityName",
+      "value": "Kalibo Health Center"
+    },
+    {
+      "key": "REF-7_initiatingFacilityAddressLine",
+      "value": "Mabini Street"
+    },
+    {
+      "key": "REF-7_initiatingFacilityRegionCode",
+      "value": "0600000000"
+    },
+    {
+      "key": "REF-7_initiatingFacilityRegionDisplay",
+      "value": "Region VI (Western Visayas)"
+    },
+    {
+      "key": "REF-7_initiatingFacilityProvinceCode",
+      "value": "0600400000"
+    },
+    {
+      "key": "REF-7_initiatingFacilityProvinceDisplay",
+      "value": "Aklan"
+    },
+    {
+      "key": "REF-7_initiatingFacilityCityCode",
+      "value": "0600407000"
+    },
+    {
+      "key": "REF-7_initiatingFacilityCityDisplay",
+      "value": "Kalibo"
+    },
+    {
+      "key": "REF-7_initiatingFacilityBarangayCode",
+      "value": "0600407013"
+    },
+    {
+      "key": "REF-7_initiatingFacilityBarangayDisplay",
+      "value": "Poblacion"
+    },
+    {
+      "key": "REF-7_initiatingFacilityPostalCode",
+      "value": "5600"
+    },
+    {
+      "key": "REF-8_initiatingFacilityPhone",
+      "value": "(043) 756-2233"
+    },
+    {
+      "key": "REF-9_receivingPractitionerFamily",
+      "value": "Lim"
+    },
+    {
+      "key": "REF-9_receivingPractitionerGiven",
+      "value": "Carlos"
+    },
+    {
+      "key": "REF-9_receivingPractitionerPrefix",
+      "value": "Dr."
+    },
+    {
+      "key": "REF-10_receivingFacilityName",
+      "value": "Dr. Rafael S. Tumbokon Memorial Hospital"
+    },
+    {
+      "key": "REF-13_dateOfReferral",
+      "value": "2026-06-18T08:30:00+08:00"
+    },
+    {
+      "key": "REF-14_referralCategoryCode",
+      "value": "73770003"
+    },
+    {
+      "key": "REF-14_referralCategoryDisplay",
+      "value": "Hospital-based outpatient emergency care center"
+    },
+    {
+      "key": "REF-14_referralCategoryText",
+      "value": "Emergency"
+    },
+    {
+      "key": "REF-15_timeCalled",
+      "value": "2026-06-18T08:30:00+08:00"
+    },
+    {
+      "key": "REF-16_reasonForReferralCode",
+      "value": "71388002"
+    },
+    {
+      "key": "REF-16_reasonForReferralDisplay",
+      "value": "Procedure"
+    },
+    {
+      "key": "REF-16_reasonForReferralText",
+      "value": "Severe pre-eclampsia requiring IV antihypertensive, seizure prophylaxis, and maternal-fetal monitoring"
+    },
+    {
+      "key": "REF-21_patientFamily",
+      "value": "Reyes"
+    },
+    {
+      "key": "REF-21_patientGiven1",
+      "value": "Ana"
+    },
+    {
+      "key": "REF-21_patientGiven2",
+      "value": "Luisa"
+    },
+    {
+      "key": "REF-22_patientGender",
+      "value": "female"
+    },
+    {
+      "key": "REF-23_patientBirthDate",
+      "value": "1988-03-12"
+    },
+    {
+      "key": "REF-27_patientAddressLine",
+      "value": "Area 4, Barangay Mabuhay"
+    },
+    {
+      "key": "REF-27_patientRegionCode",
+      "value": "0600000000"
+    },
+    {
+      "key": "REF-27_patientRegionDisplay",
+      "value": "Region VI (Western Visayas)"
+    },
+    {
+      "key": "REF-27_patientProvinceCode",
+      "value": "0600400000"
+    },
+    {
+      "key": "REF-27_patientProvinceDisplay",
+      "value": "Aklan"
+    },
+    {
+      "key": "REF-27_patientCityCode",
+      "value": "0600407000"
+    },
+    {
+      "key": "REF-27_patientCityDisplay",
+      "value": "Kalibo"
+    },
+    {
+      "key": "REF-27_patientBarangayCode",
+      "value": "0600407013"
+    },
+    {
+      "key": "REF-27_patientBarangayDisplay",
+      "value": "Poblacion"
+    },
+    {
+      "key": "REF-27_patientPostalCode",
+      "value": "5600"
+    },
+    {
+      "key": "REF-28_patientPhone",
+      "value": "+63-919-876-5432"
+    },
+    {
+      "key": "REF-29_nextOfKinFamily",
+      "value": "Reyes"
+    },
+    {
+      "key": "REF-29_nextOfKinGiven",
+      "value": "Roberto"
+    },
+    {
+      "key": "REF-31_chiefComplaintText",
+      "value": "Severe headache, dizziness, blurring of vision and epigastric pain for 2 days"
+    },
+    {
+      "key": "REF-31_chiefComplaintCode",
+      "value": "25064002"
+    },
+    {
+      "key": "REF-31_chiefComplaintDisplay",
+      "value": "Headache"
+    },
+    {
+      "key": "REF-32_clinicalHistory",
+      "value": "Chief complaint: severe headache, dizziness, blurring of vision and epigastric pain for 2 days. G2P1, 32 weeks AOG."
+    },
+    {
+      "key": "REF-33_bpSystolic",
+      "value": "180"
+    },
+    {
+      "key": "REF-33_bpDiastolic",
+      "value": "110"
+    },
+    {
+      "key": "REF-34_heartRate",
+      "value": "112"
+    },
+    {
+      "key": "REF-35_respiratoryRate",
+      "value": "24"
+    },
+    {
+      "key": "REF-36_oxygenSaturation",
+      "value": "96"
+    },
+    {
+      "key": "REF-37_temperature",
+      "value": "36.8"
+    },
+    {
+      "key": "REF-38_weight",
+      "value": "72"
+    },
+    {
+      "key": "REF-39_treatmentGiven",
+      "value": "Pre-referral treatment given: Methyldopa 250mg BID, Folic Acid 5mg OD, FeSO4 300mg OD, CaCO3 500mg TID."
+    },
+    {
+      "key": "REF-40_labConclusion",
+      "value": "Proteinuria 3+. Findings consistent with severe pre-eclampsia."
+    },
+    {
+      "key": "REF-40_labTitle",
+      "value": "Urinalysis Results — Kalibo Health Center"
+    },
+    {
+      "key": "REF-41_workingImpressionText",
+      "value": "Severe pre-eclampsia, 32 weeks AOG, G2P1"
+    },
+    {
+      "key": "REF-41_workingImpressionCode",
+      "value": "398254007"
+    },
+    {
+      "key": "REF-41_workingImpressionDisplay",
+      "value": "Pre-eclampsia"
+    },
+    {
+      "key": "serviceRequestNote",
+      "value": "Ana Reyes, 38-year-old G2P1, 32 weeks AOG. BP 180/110 mmHg with severe headache, dizziness, and blurring of vision. Proteinuria 3+. Referred for urgent management of severe pre-eclampsia."
+    },
+    {
+      "key": "taskNote",
+      "value": "New referral for Ana Reyes with severe pre-eclampsia. Awaiting DRSTMH response."
+    },
+    {
+      "key": "encounterStatus",
+      "value": "finished"
+    },
+    {
+      "key": "encounterClassCode",
+      "value": "AMB"
+    },
+    {
+      "key": "observationsEffectiveDateTime",
+      "value": "2026-06-18T08:15:00+08:00"
+    }
+  ]
+}
